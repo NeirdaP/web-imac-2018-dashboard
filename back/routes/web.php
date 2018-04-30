@@ -12,6 +12,12 @@
 */
 
 $router->get('/hello/world', function () {
-    return "Hello World, j'adore ce que tu fais";
-    //return $router->app->version();
+    // Test database connection
+	try {
+	    DB::connection()->getPdo();
+		return "connected successfully to database ".DB::connection()->getDatabaseName();
+		//return $router->app->version();
+	} catch (\Exception $e) {
+	    die("Could not connect to the database.  Please check your configuration.");
+	}
 });
