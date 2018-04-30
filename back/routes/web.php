@@ -11,6 +11,7 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->get('/hello/world', function () {
+    return "Hello World, j'adore ce que tu fais";
+    //return $router->app->version();
 });
