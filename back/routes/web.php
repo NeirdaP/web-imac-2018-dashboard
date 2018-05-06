@@ -19,10 +19,8 @@ $router->get('/cinemas', [
 	'as' => 'cinemas', 'uses' => 'HomePage@allTheater'
 ]);
 
-$router->get('/cinemas/{id:[0-9]+}', 'HomePage@searchTeatherWithID');
+$router->get('/seats', 'HomePage@getSeats');
 
-$router->get('/cinemas/keyword={string}', 'HomePage@searchTeatherWithKeyword');
+$router->get('/screens', 'HomePage@getScreens');
 
-$router->get('/cinemas/seats={min},{max}', 'HomePage@searchTeatherWithSeats');
-
-$router->get('/cinemas/screens={min},{max}', 'HomePage@searchTheaterWithScreens');
+$router->get('/cinema/{id:[0-9]+}', 'HomePage@searchTeatherWithID');
