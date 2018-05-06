@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Illuminate\Http\Request;
 
 class HomePage extends Controller
 {
@@ -16,7 +17,8 @@ class HomePage extends Controller
         //
     }
 
-    public function start()
+    /* Testing Query Builder & JSON response */
+    public function test()
     {
         
         // Test database connection
@@ -44,5 +46,110 @@ class HomePage extends Controller
         
     }
 
-    //
+    /* Return all the theater in database */
+    public function allTheater()
+    {   
+        try {
+            $jsonResponse = DB::table('theater')
+                ->select(
+                    'name', 
+                    'latitude', 
+                    'longitude', 
+                    'numberOfSeat', 
+                    'numberOfRoom as numberOfScreen', 
+                    'artHouse'
+                    )
+                ->get();
+            return response()->json($jsonResponse);
+        } catch (\Exception $e) {
+            die("Could not connect to the database.  Please check your configuration.");
+        }
+    }
+
+    public function searchTeatherWithID($id)
+    {
+        try {
+            $jsonResponse = DB::table('theater')
+                ->select(
+                    'name', 
+                    'latitude', 
+                    'longitude', 
+                    'numberOfSeat', 
+                    'numberOfRoom as numberOfScreen', 
+                    'artHouse'
+                    )
+                -> where('id', '=', $id)
+                ->get();
+            return response()->json($jsonResponse);
+        } catch (\Exception $e) {
+            die("Could not connect to the database.  Please check your configuration.");
+        }
+    }
+
+    public function searchTeatherWithKeyword($string)
+    {
+        try {
+            $jsonResponse = DB::table('theater')
+                ->select(
+                    'name', 
+                    'latitude', 
+                    'longitude', 
+                    'numberOfSeat', 
+                    'numberOfRoom as numberOfScreen', 
+                    'artHouse'
+                    )
+                -> where('name', 'like', '%'.$string.'%')
+                ->get();
+            return response()->json($jsonResponse);
+        } catch (\Exception $e) {
+            die("Could not connect to the database.  Please check your configuration.");
+        }
+    }
+
+    public function searchTeatherWithSeats($min, $max)
+    {
+        try {
+            $jsonResponse = DB::table('theater')
+                ->select(
+                    'name', 
+                    'latitude', 
+                    'longitude', 
+                    'numberOfSeat', 
+                    'numberOfRoom as numberOfScreen', 
+                    'artHouse'
+                    )
+                -> where([
+                    ['numberOfSeat', '>=', $min],
+                    ['numberOfSeat', '<=', $max],
+                ])
+                ->get();
+            return response()->json($jsonResponse);
+        } catch (\Exception $e) {
+            die("Could not connect to the database.  Please check your configuration.");
+        }
+    }
+
+    public function searchTheaterWithScreens($min, $max)
+    {
+        try {
+            $jsonResponse = DB::table('theater')
+                ->select(
+                    'name', 
+                    'latitude', 
+                    'longitude', 
+                    'numberOfSeat', 
+                    'numberOfRoom as numberOfScreen', 
+                    'artHouse'
+                    )
+                -> where([
+                    ['numberOfRoom', '>=', $min],
+                    ['numberOfRoom', '<=', $max],
+                ])
+                ->get();
+            return response()->json($jsonResponse);
+        } catch (\Exception $e) {
+            die("Could not connect to the database.  Please check your configuration.");
+        }
+    }
+    
 }
