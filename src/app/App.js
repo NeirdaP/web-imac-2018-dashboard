@@ -4,13 +4,13 @@ import Searchbar from '../searchbar/searchbar.js';
 import axios from "axios";
 
 class App extends Component {
-
+	
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
 		
 		this.state = {
-			cinema: {},
+			cinemas: [],
 			parameters: {
 				searchWord: '',
 				screens: {min: null, max: null},
@@ -24,6 +24,9 @@ class App extends Component {
 		this.setScreens = this.setScreens.bind(this);
 		this.setAge = this.setAge.bind(this);
 		this.search = this.search.bind(this);
+		this.componentDidMount = this.componentDidMount.bind(this);
+		
+		this.printState = this.printState.bind(this);
 	}
 	
 	//SETTERS
@@ -59,29 +62,44 @@ class App extends Component {
 		
 	}
 	
+	printState(){
+		console.log(this.state.cinemas);
+	}
+	
 	// AJAX Call
-	/*componnetDidMount(){
+	componentDidMount(){
 		axios
-			.get()
+			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas")
 			.then(response => {
-				const newDatas = response.data.map(search => {
-					return 0;
-				})
-			
-				
-				const newState = Object.assign({}, this.state, {
+				console.log(response);
+				const newCinemas = response.data.map(c => {
+				  return {
+					name: c.name,
+					latitude: c.latitude,
+					longitude: c.longitude,
+					numberOfSeat: c.numberOfSeat,
+					numberOfScreen: c.numberOfScreen,
+					artHouse: c.artHouse
+				  };
 				});
-			
+				
+				// create a new "State" object without mutating the original State object. 
+				const newState = Object.assign({}, this.state, {
+				  cinemas: newCinemas
+				});
+
+				// store the new state object in the component's state
 				this.setState(newState);
-			});
+			})
 			.catch(error => console.log(error));
-	}*/
+	} 
 	
 	// RENDER THE COMPONENT
 	render() {
 		return (
 			<div className="App">
 				<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
+				<button onClick={this.printState}>test ajax call</button>
 			</div>
 		);
 	}
