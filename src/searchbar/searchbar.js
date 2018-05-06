@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
 import './searchbar.css';
-import searchIcon from './img/searchIcon.png';
+import searchIcon from '../image/searchIcon.png';
 
 class Searchbar extends Component {
+	// CONSTRUTOR
 	constructor(props) {
 		super(props);
-		this.state = {};
 		
-		this.search = this.search.bind(this);
+		this.updateKeyword = this.updateKeyword.bind(this);
 	}
 
-	search(e){
-		console.log(e.target.value + "click!");
-		// Tester la valeur de l'input avant de la faire : si vide 
-		// Faire requête en AJAX pour récuperer les résultats
+	// UPDATE KEYWORD IN APP 
+	updateKeyword(e) {
+		this.props.setParentSearchword(e.target.value);
 	}
 	
-	render(){
+	// RENDER THE COMPONENT
+	render() {
 		return (
 			<div className="searchDiv">
-				<input placeholder="Find a movie theater..." type="text" onKeyUp={this.search} />
+				<input placeholder="Find a movie theater..." type="text" onKeyUp={this.updateKeyword} />
 				<button onClick={this.search}><img src={searchIcon} width="25px" alt="searchImg"/></button>
-				
 			</div>
 		);
 	}
-	
 }
 
 export default Searchbar;
