@@ -1,8 +1,22 @@
-.App {
- 	text-align: center;
- 	margin-top: 50vh;
- 	transform: translateY(-50%);
-	-webkit-transform: translateY(-50%);
+body > #root > div {
+  height: 100vh; // So that App is full height
+}
+
+.App {	
  	font-family: Verdana;
  	color: #4eb0ae;
+	background-color: red;
 }
+
+.searchbar {
+	background-color: white;
+	
+	width: 300px;
+	
+	position: fixed;
+	left: 40px;
+	top: 20px;
+	padding: 8px 20px;
+	border-radius: 3px;
+}
+

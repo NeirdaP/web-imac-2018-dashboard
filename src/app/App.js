@@ -55,11 +55,11 @@ class App extends Component {
 	setAge(value){
 		this.setParameter('age',value);
 	}
-
 	
 	// Fonction de recherche que tous les composants de la page principale utiliseront
 	search(searchWord, screen, seats, age) {
-		
+		console.log("searching");
+		// Vérifier qu'il y a qqch
 	}
 	
 	printState(){
@@ -98,8 +98,35 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
-				<button onClick={this.printState}>test ajax call</button>
+				<div className="searchDivs">
+					<div className="map">
+						
+					</div>
+					
+					<div className="searchbar">
+						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
+					</div>
+					
+					<div className="screenFilter">
+						
+					</div>
+					
+					<div className="seatFilter">
+						
+					</div>
+					
+					<div className="freqFilter">
+						
+					</div>
+					
+					<div className="artHouseFilter">
+						
+					</div>
+					
+					<button onClick={this.printState}>test ajax call</button>
+				</div>
+				
+				
 			</div>
 		);
 	}
