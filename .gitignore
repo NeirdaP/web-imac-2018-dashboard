@@ -2,3 +2,4 @@ node_modules/
 /build/
 .DS_Store
 /src/**/*.scss
+package-lock.json
