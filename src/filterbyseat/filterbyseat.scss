@@ -1,0 +1,35 @@
+.filterbyseat {
+
+  .rc-slider-track {
+    background-color: black;
+  }
+
+  .rc-slider-handle {
+    border-color: red;
+  }
+
+  .rc-slider-rail {
+    background-color: #eee;
+  }
+
+  .values{
+    position: relative;
+
+    input {
+      display: inline;
+      color:#eee;
+      text-align: center;
+
+      &.min-value {
+        background-color: green;
+        left:0;
+      }
+
+      &.max-value {
+        background-color: pink;
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+}

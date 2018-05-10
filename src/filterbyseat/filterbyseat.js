@@ -37,7 +37,7 @@ class Filterbyseat extends Component {
 		return (
       <div className="filterbyseat">
         <h2>Filter by seats</h2>
-        <Range min={0} max={20} defaultValue={[3, 10]} pushable={1} tipFormatter={value => `${value}%`}/>
+        <Range min={0} max={20} defaultValue={[0, 20]} pushable={1} />
         <div className="values">
           <input type="text" className="min-value" value="Min" readOnly />
           <input type="text" className="max-value" value="Max" readOnly />

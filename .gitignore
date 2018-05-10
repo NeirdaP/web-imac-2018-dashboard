@@ -1,5 +1,5 @@
 node_modules/
-/src/**/*.scss
+/src/**/*.css
 /build/
 .DS_Store
 package-lock.json
