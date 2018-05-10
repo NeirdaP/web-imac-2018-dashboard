@@ -1,0 +1,21 @@
+.filterbyseat .rc-slider-track {
+  background-color: black; }
+.filterbyseat .rc-slider-handle {
+  border-color: red; }
+.filterbyseat .rc-slider-rail {
+  background-color: #eee; }
+.filterbyseat .values {
+  position: relative; }
+  .filterbyseat .values input {
+    display: inline;
+    color: #eee;
+    text-align: center; }
+    .filterbyseat .values input.min-value {
+      background-color: green;
+      left: 0; }
+    .filterbyseat .values input.max-value {
+      background-color: pink;
+      position: absolute;
+      right: 0; }
+
+/*# sourceMappingURL=filterbyseat.css.map */

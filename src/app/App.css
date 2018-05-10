@@ -1,0 +1,28 @@
+body > #root > div {
+  height: 100vh; }
+
+.App {
+  font-family: Verdana;
+  color: #010101;
+  background-color: red; }
+
+.App h2 {
+  text-transform: uppercase; }
+
+.searchbar {
+  background-color: white;
+  width: 300px;
+  position: fixed;
+  left: 40px;
+  top: 20px;
+  padding: 8px 20px;
+  border-radius: 3px; }
+
+.seatFilter {
+  background-color: white;
+  width: 300px;
+  position: fixed;
+  left: 40px;
+  top: 70px;
+  padding: 8px 20px;
+  border-radius: 3px; }

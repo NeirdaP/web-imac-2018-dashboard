@@ -1,5 +1,7 @@
 node_modules/
-/src/**/*.css
+/src/**/*.scss
 /build/
 .DS_Store
 package-lock.json
+/src/**/.sass-cache/
+/src/**/*.map

@@ -1,0 +1,14 @@
+.searchDiv {
+  border-bottom: 1px solid #f6f6f6;
+  vertical-align: middle; }
+  .searchDiv input {
+    font-size: 0.9rem;
+    border: 0;
+    color: #999999; }
+  .searchDiv input:focus {
+    color: #ed4e50; }
+  .searchDiv button {
+    background: 0;
+    border: 0;
+    float: right;
+    cursor: pointer; }
