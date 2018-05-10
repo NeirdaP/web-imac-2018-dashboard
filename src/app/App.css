@@ -5,9 +5,8 @@ body > #root > div {
   font-family: Verdana;
   color: #010101;
   background-color: red; }
-
-.App h2 {
-  text-transform: uppercase; }
+  .App h2 {
+    text-transform: uppercase; }
 
 .searchbar {
   background-color: white;

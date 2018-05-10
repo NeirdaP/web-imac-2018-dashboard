@@ -1,9 +1,12 @@
 .filterbyseat .rc-slider-track {
   background-color: black; }
+
 .filterbyseat .rc-slider-handle {
   border-color: red; }
+
 .filterbyseat .rc-slider-rail {
   background-color: #eee; }
+
 .filterbyseat .values {
   position: relative; }
   .filterbyseat .values input {
@@ -17,5 +20,3 @@
       background-color: pink;
       position: absolute;
       right: 0; }
-
-/*# sourceMappingURL=filterbyseat.css.map */
