@@ -19,13 +19,20 @@ class Filterbyseat extends Component {
 	constructor(props) {
 		super(props);
 
-		this.updateKeyword = this.updateKeyword.bind(this);
+		this.state = {
+			seats : {min: 1, max: 20}
+		}
+		this.updateSliderValue = this.updateSliderValue.bind(this);
 		this.search = this.search.bind(this);
 	}
 
-	// UPDATE KEYWORD IN APP
-	updateKeyword(e) {
-		this.props.setParentSearchword(e.target.value);
+	// UPDATE VALUES IN APP
+	updateSliderValue(e) {
+		let test = {
+			min: e.value[0],
+			max: e.value[1]
+		}
+		this.props.setParentSeatsSlider(test)
 	}
 
 	search(){
@@ -37,10 +44,10 @@ class Filterbyseat extends Component {
 		return (
       <div className="filterbyseat">
         <h2>Filter by seats</h2>
-        <Range min={0} max={20} defaultValue={[0, 20]} pushable={1} />
+        <Range min={1} max={20} defaultValue={[1, 20]} pushable={1} onAfterChange={ value => this.updateSliderValue({value}) } />
         <div className="values">
-          <input type="text" className="min-value" value="Min" readOnly />
-          <input type="text" className="max-value" value="Max" readOnly />
+          <input type="text" className="min-value" value={ this.state.seats.min/**/ } readOnly />
+          <input type="text" className="max-value" value={ this.state.seats.max/**/ } readOnly />
         </div>
       </div>
 		);

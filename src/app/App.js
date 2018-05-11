@@ -49,7 +49,8 @@ class App extends Component {
 
 	// Set the seats value
 	setSeats(value){
-		this.setParameter('seats',value);
+		console.log(value)
+		this.setParameter('seats', value);
 	}
 
 	// Set the age value
@@ -113,7 +114,7 @@ class App extends Component {
 					</div>
 
 					<div className="seatFilter">
-						<Filterbyseat />
+						<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={ this.setSeats } />
 					</div>
 
 					<div className="freqFilter">
