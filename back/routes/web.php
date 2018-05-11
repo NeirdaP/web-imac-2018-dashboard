@@ -16,7 +16,7 @@ $router->get('/', function(){
 });
 
 $router->get('/cinemas', [
-	'as' => 'cinemas', 'uses' => 'HomePage@allTheater'
+	'as' => 'cinemas', 'uses' => 'HomePage@searchTheater'
 ]);
 
 $router->get('/seats', 'HomePage@getSeats');
