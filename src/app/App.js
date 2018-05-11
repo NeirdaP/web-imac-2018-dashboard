@@ -23,6 +23,7 @@ class App extends Component {
 		this.setParameters = this.setParameter.bind(this);
 		this.setSearchword = this.setSearchword.bind(this);
 		this.setScreens = this.setScreens.bind(this);
+		this.setSeats = this.setSeats.bind(this);
 		this.setAge = this.setAge.bind(this);
 		this.search = this.search.bind(this);
 		this.componentDidMount = this.componentDidMount.bind(this);
@@ -49,7 +50,6 @@ class App extends Component {
 
 	// Set the seats value
 	setSeats(value){
-		console.log(value)
 		this.setParameter('seats', value);
 	}
 
