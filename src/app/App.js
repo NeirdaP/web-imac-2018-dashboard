@@ -33,19 +33,44 @@ class App extends Component {
 
 	//SETTERS
 	setParameter(name, value){
-		this.setState({
+		/*this.setState({
 			name: value
-		})
+		})*/
+
+		switch(name){
+			case 'age':
+				this.setState({
+					age: value
+				})
+				break;
+				case 'screens':
+					this.setState({
+						screens: value
+					})
+					break;
+				case 'seats':
+					this.setState({
+						seats: value
+					})
+					break;
+			default:
+				console.log('Erreur: switch default in setParameter(name, value).')
+				this.setState({
+					name: value
+				})
+				break;
+		}
+		console.log(this.state)
 	}
 
 	// Set the keyword value
 	setSearchword(searchWord){
-		this.setParameter('searchWord',searchWord);
+		this.setParameter('searchWord', searchWord);
 	}
 
 	// Set the screens value
 	setScreens(value){
-		this.setParameter('screens',value);
+		this.setParameter('screens', value);
 	}
 
 	// Set the seats value
@@ -55,7 +80,7 @@ class App extends Component {
 
 	// Set the age value
 	setAge(value){
-		this.setParameter('age',value);
+		this.setParameter('age', value);
 	}
 
 	// Fonction de recherche que tous les composants de la page principale utiliseront

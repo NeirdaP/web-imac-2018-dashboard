@@ -20,19 +20,31 @@ class Filterbyseat extends Component {
 		super(props);
 
 		this.state = {
-			seats : {min: 1, max: 20}
+			seats : {min: 1, max: 200}
 		}
-		this.updateSliderValue = this.updateSliderValue.bind(this);
+		this.updateInputValue = this.updateInputValue.bind(this);
 		this.search = this.search.bind(this);
 	}
 
-	// UPDATE VALUES IN APP
-	updateSliderValue(e) {
-		let test = {
+	// UPDATE VALUES IN SLIDER INPUTS
+	updateInputValue(e) {
+		let minmaxseats = {
 			min: e.value[0],
 			max: e.value[1]
 		}
-		this.props.setParentSeatsSlider(test)
+		this.setState({ seats: minmaxseats })
+	}
+
+// UPDATE VALUES IN APP
+	updateStateValue(e) {
+		//let min = ReactDOM.findDOMNode(".filterbyseat .min-value");
+		//let max = ReactDOM.findDOMNode(".filterbyseat .max-value");
+		let minmaxseats = {
+			min: e.value[0],
+			max: e.value[1]
+		}
+
+		this.props.setParentSeatsSlider(minmaxseats)
 	}
 
 	search(){
@@ -44,7 +56,7 @@ class Filterbyseat extends Component {
 		return (
       <div className="filterbyseat">
         <h2>Filter by seats</h2>
-        <Range min={1} max={20} defaultValue={[1, 20]} pushable={1} onAfterChange={ value => this.updateSliderValue({value}) } />
+        <Range min={1} max={200} defaultValue={[1, 200]} pushable={15} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
         <div className="values">
           <input type="text" className="min-value" value={ this.state.seats.min/**/ } readOnly />
           <input type="text" className="max-value" value={ this.state.seats.max/**/ } readOnly />
