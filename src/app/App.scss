@@ -45,7 +45,7 @@ body > #root > div {
 
   position: fixed;
   left: 40px;
-  top: 205px;
+  top: 185px;
   padding: 8px 20px;
   border-radius: 3px;
 }
@@ -57,7 +57,7 @@ body > #root > div {
 
   position: fixed;
   left: 40px;
-  top: 335px;
+  top: 295px;
   padding: 8px 20px;
   border-radius: 3px;
 }
@@ -69,7 +69,19 @@ body > #root > div {
 
   position: fixed;
   left: 40px;
-  top: 465px;
+  top: 405px;
+  padding: 8px 20px;
+  border-radius: 3px;
+}
+
+.artHouseFilter {
+  background-color: white;
+
+  width: 300px;
+
+  position: fixed;
+  left: 40px;
+  top: 515px;
   padding: 8px 20px;
   border-radius: 3px;
 }

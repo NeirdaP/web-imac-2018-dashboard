@@ -4,6 +4,7 @@ import Filterbyseat from '../filterbyseat/filterbyseat.js';
 import Filterbyscreens from '../filterbyscreens/filterbyscreens.js';
 import Filterbyage from '../filterbyage/filterbyage.js';
 import Filterbyfreq from '../filterbyfreq/filterbyfreq.js';
+import Filterbyarthouse from '../filterbyarthouse/filterbyarthouse.js';
 import './App.css';
 import axios from "axios";
 
@@ -17,6 +18,7 @@ class App extends Component {
 			cinemas: [],
 			parameters: {
 				searchWord: '',
+				artHouse: 2,
 				screens: {min: null, max: null},
 				seats: {min: null, max: null},
 				freq: {min: null, max: null},
@@ -30,6 +32,7 @@ class App extends Component {
 		this.setSeats = this.setSeats.bind(this);
 		this.setAge = this.setAge.bind(this);
 		this.setFreq = this.setFreq.bind(this);
+		this.setArtHouse = this.setArtHouse.bind(this);
 		this.search = this.search.bind(this);
 		this.componentDidMount = this.componentDidMount.bind(this);
 
@@ -46,6 +49,11 @@ class App extends Component {
 			case 'age':
 				this.setState({
 					age: value
+				});
+				break;
+			case 'artHouse':
+				this.setState({
+					artHouse: value
 				});
 				break;
 			case 'freq':
@@ -86,6 +94,11 @@ class App extends Component {
 	// Set the seats value
 	setSeats(value){
 		this.setParameter('seats', value);
+	}
+
+	// Set the art house value
+	setArtHouse(value){
+		this.setParameter('artHouse', value);
 	}
 
 	// Set the age value
@@ -166,7 +179,7 @@ class App extends Component {
 					</div>
 
 					<div className="artHouseFilter">
-
+						<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
 					</div>
 
 					<button onClick={this.printState}>test ajax call</button>

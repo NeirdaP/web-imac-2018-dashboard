@@ -1,0 +1,18 @@
+.artHouse {
+
+  .radio {
+    display: inline-block;
+    width: 30%;
+  }
+
+  input[type="radio"] {
+  	width: 0;
+    height: 0;    
+  	border: 5px solid grey;
+  }
+
+  input[type="radio"]:checked {
+    opacity: 1;
+  	border: 5px solid grey;
+  }
+}
