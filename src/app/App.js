@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Searchbar from '../searchbar/searchbar.js';
 import Filterbyseat from '../filterbyseat/filterbyseat.js';
 import Filterbyscreens from '../filterbyscreens/filterbyscreens.js';
+import Filterbyage from '../filterbyage/filterbyage.js';
+import Filterbyfreq from '../filterbyfreq/filterbyfreq.js';
 import './App.css';
 import axios from "axios";
 
@@ -17,6 +19,7 @@ class App extends Component {
 				searchWord: '',
 				screens: {min: null, max: null},
 				seats: {min: null, max: null},
+				freq: {min: null, max: null},
 				age: {min: null, max: null}
 			}
 		}
@@ -26,6 +29,7 @@ class App extends Component {
 		this.setScreens = this.setScreens.bind(this);
 		this.setSeats = this.setSeats.bind(this);
 		this.setAge = this.setAge.bind(this);
+		this.setFreq = this.setFreq.bind(this);
 		this.search = this.search.bind(this);
 		this.componentDidMount = this.componentDidMount.bind(this);
 
@@ -40,25 +44,30 @@ class App extends Component {
 
 		switch(name){
 			case 'age':
-				this.setState({ 
+				this.setState({
 					age: value
-				})
+				});
 				break;
-				case 'screens':
-					this.setState({
-						screens: value
-					})
-					break;
-				case 'seats':
-					this.setState({
-						seats: value
-					})
-					break;
+			case 'freq':
+				this.setState({
+					freq: value
+				});
+				break;
+			case 'screens':
+				this.setState({
+					screens: value
+				});
+				break;
+			case 'seats':
+				this.setState({
+					seats: value
+				});
+				break;
 			default:
-				console.log('Erreur: switch default in setParameter(name, value).')
+				console.log('Erreur: switch default in setParameter(name, value).');
 				this.setState({
 					name: value
-				})
+				});
 				break;
 		}
 		console.log(this.state)
@@ -84,8 +93,13 @@ class App extends Component {
 		this.setParameter('age', value);
 	}
 
+	// Set the freq value
+	setFreq(value){
+		this.setParameter('freq', value);
+	}
+
 	// Fonction de recherche que tous les composants de la page principale utiliseront
-	search(searchWord, screen, seats, age) {
+	search(searchWord, screens, seats, age) {
 		console.log("searching");
 		// Vérifier qu'il y a qqch
 	}
@@ -136,15 +150,19 @@ class App extends Component {
 					</div>
 
 					<div className="screenFilter">
-						<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={ this.setScreens } />
+						<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
 					</div>
 
 					<div className="seatFilter">
-						<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={ this.setSeats } />
+						<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={this.setSeats} />
+					</div>
+
+					<div className="ageFilter">
+						<Filterbyage onAfterChange={this.search} setParentAgeSlider={this.setAge} />
 					</div>
 
 					<div className="freqFilter">
-
+						<Filterbyfreq onAfterChange={this.search} setParentFreqSlider={this.setFreq} />
 					</div>
 
 					<div className="artHouseFilter">

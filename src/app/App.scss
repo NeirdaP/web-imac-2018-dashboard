@@ -9,6 +9,8 @@ body > #root > div {
 
   h2 {
     text-transform: uppercase;
+    font-size: 1.1em;
+    font-weight: lighter;
   }
 }
 
@@ -44,6 +46,30 @@ body > #root > div {
   position: fixed;
   left: 40px;
   top: 205px;
+  padding: 8px 20px;
+  border-radius: 3px;
+}
+
+.ageFilter {
+  background-color: white;
+
+  width: 300px;
+
+  position: fixed;
+  left: 40px;
+  top: 335px;
+  padding: 8px 20px;
+  border-radius: 3px;
+}
+
+.freqFilter {
+  background-color: white;
+
+  width: 300px;
+
+  position: fixed;
+  left: 40px;
+  top: 465px;
   padding: 8px 20px;
   border-radius: 3px;
 }

@@ -13,13 +13,13 @@ import 'rc-slider/assets/index.css';
   container
 );/**/
 
-class Filterbyscreens extends Component {
+class Filterbyage extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			screens : {min: 1, max: 30}
+			age : {min: 1, max: 99}
 		}
 		this.updateInputValue = this.updateInputValue.bind(this);
 		this.search = this.search.bind(this);
@@ -27,21 +27,21 @@ class Filterbyscreens extends Component {
 
 	// UPDATE VALUES IN SLIDER INPUTS
 	updateInputValue(e) {
-		let minmaxscreens = {
+		let minmaxage = {
 			min: e.value[0],
 			max: e.value[1]
 		}
-		this.setState({ screens: minmaxscreens })
+		this.setState({ age: minmaxage })
 	}
 
 // UPDATE VALUES IN APP
 	updateStateValue(e) {
-		let minmaxscreens = {
+		let minmaxage = {
 			min: e.value[0],
 			max: e.value[1]
 		}
 
-		this.props.setParentScreensSlider(minmaxscreens)
+		this.props.setParentAgeSlider(minmaxage)
 	}
 
 	search(){
@@ -51,16 +51,16 @@ class Filterbyscreens extends Component {
 	// RENDER THE COMPONENT
 	render() {
 		return (
-      <div className="filter screens">
-        <h2>Filter by screens</h2>
-        <Range min={1} max={30} defaultValue={[this.state.screens.min, this.state.screens.max]} pushable={1} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
+      <div className="filter age">
+        <h2>Filter by age</h2>
+        <Range min={1} max={99} defaultValue={[this.state.age.min, this.state.age.max]} pushable={1} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
         <div className="values">
-          <input type="text" className="min-value" value={ this.state.screens.min } readOnly />
-          <input type="text" className="max-value" value={ this.state.screens.max } readOnly />
+          <input type="text" name="agemin" className="min-value" value={ this.state.age.min } readOnly />
+          <input type="text" name="agemax" className="max-value" value={ this.state.age.max } readOnly />
         </div>
       </div>
 		);
 	}
 }
 
-export default Filterbyscreens;
+export default Filterbyage;

@@ -19,7 +19,7 @@ class Filterbyseat extends Component {
 		super(props);
 
 		this.state = {
-			seats : {min: 1, max: 200}
+			seats : {min: 1, max: 1001}
 		}
 		this.updateInputValue = this.updateInputValue.bind(this);
 		this.search = this.search.bind(this);
@@ -53,10 +53,10 @@ class Filterbyseat extends Component {
 		return (
       <div className="filter seat">
         <h2>Filter by seats</h2>
-        <Range min={1} max={200} defaultValue={[1, 200]} pushable={15} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
+        <Range min={1} max={1001} defaultValue={[this.state.seats.min, this.state.seats.max]} pushable={20} step={20} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
         <div className="values">
-          <input type="text" className="min-value" value={ this.state.seats.min/**/ } readOnly />
-          <input type="text" className="max-value" value={ this.state.seats.max/**/ } readOnly />
+          <input type="text" className="min-value" value={ this.state.seats.min } readOnly />
+          <input type="text" className="max-value" value={ this.state.seats.max } readOnly />
         </div>
       </div>
 		);

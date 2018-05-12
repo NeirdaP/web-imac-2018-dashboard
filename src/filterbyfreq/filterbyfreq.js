@@ -13,13 +13,13 @@ import 'rc-slider/assets/index.css';
   container
 );/**/
 
-class Filterbyscreens extends Component {
+class Filterbyfreq extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			screens : {min: 1, max: 30}
+			freq: {min: 0, max: 10000}
 		}
 		this.updateInputValue = this.updateInputValue.bind(this);
 		this.search = this.search.bind(this);
@@ -27,21 +27,21 @@ class Filterbyscreens extends Component {
 
 	// UPDATE VALUES IN SLIDER INPUTS
 	updateInputValue(e) {
-		let minmaxscreens = {
+		let minmaxfreq = {
 			min: e.value[0],
 			max: e.value[1]
 		}
-		this.setState({ screens: minmaxscreens })
+		this.setState({ freq: minmaxfreq })
 	}
 
 // UPDATE VALUES IN APP
 	updateStateValue(e) {
-		let minmaxscreens = {
+		let minmaxfreq = {
 			min: e.value[0],
 			max: e.value[1]
 		}
 
-		this.props.setParentScreensSlider(minmaxscreens)
+		this.props.setParentFreqSlider(minmaxfreq)
 	}
 
 	search(){
@@ -51,16 +51,16 @@ class Filterbyscreens extends Component {
 	// RENDER THE COMPONENT
 	render() {
 		return (
-      <div className="filter screens">
-        <h2>Filter by screens</h2>
-        <Range min={1} max={30} defaultValue={[this.state.screens.min, this.state.screens.max]} pushable={1} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
+      <div className="filter freq">
+        <h2>Filter by year frequentation</h2>
+        <Range min={0} max={10000} defaultValue={[this.state.freq.min,this.state.freq.max]} pushable={200} step={50} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
         <div className="values">
-          <input type="text" className="min-value" value={ this.state.screens.min } readOnly />
-          <input type="text" className="max-value" value={ this.state.screens.max } readOnly />
+          <input type="text" name="freqmin" className="min-value" value={ this.state.freq.min } readOnly />
+          <input type="text" name="freqmax" className="max-value" value={ this.state.freq.max } readOnly />
         </div>
       </div>
 		);
 	}
 }
 
-export default Filterbyscreens;
+export default Filterbyfreq;
