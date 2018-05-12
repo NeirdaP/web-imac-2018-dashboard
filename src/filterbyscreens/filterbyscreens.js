@@ -13,13 +13,13 @@ import 'rc-slider/assets/index.css';
   container
 );/**/
 
-class Filterbyseat extends Component {
+class Filterbyscreens extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			seats : {min: 1, max: 200}
+			screens : {min: 1, max: 30}
 		}
 		this.updateInputValue = this.updateInputValue.bind(this);
 		this.search = this.search.bind(this);
@@ -27,21 +27,21 @@ class Filterbyseat extends Component {
 
 	// UPDATE VALUES IN SLIDER INPUTS
 	updateInputValue(e) {
-		let minmaxseats = {
+		let minmaxscreens = {
 			min: e.value[0],
 			max: e.value[1]
 		}
-		this.setState({ seats: minmaxseats })
+		this.setState({ screens: minmaxscreens })
 	}
 
 // UPDATE VALUES IN APP
 	updateStateValue(e) {
-		let minmaxseats = {
+		let minmaxscreens = {
 			min: e.value[0],
 			max: e.value[1]
 		}
 
-		this.props.setParentSeatsSlider(minmaxseats)
+		this.props.setParentScreensSlider(minmaxscreens)
 	}
 
 	search(){
@@ -51,16 +51,16 @@ class Filterbyseat extends Component {
 	// RENDER THE COMPONENT
 	render() {
 		return (
-      <div className="filter seat">
-        <h2>Filter by seats</h2>
-        <Range min={1} max={200} defaultValue={[1, 200]} pushable={15} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
+      <div className="filter screens">
+        <h2>Filter by screens</h2>
+        <Range min={1} max={30} defaultValue={[1, 200]} pushable={15} onChange={ value => this.updateInputValue({value})} onAfterChange={ value => this.updateStateValue({value}) } />
         <div className="values">
-          <input type="text" className="min-value" value={ this.state.seats.min/**/ } readOnly />
-          <input type="text" className="max-value" value={ this.state.seats.max/**/ } readOnly />
+          <input type="text" className="min-value" value={ this.state.screens.min } readOnly />
+          <input type="text" className="max-value" value={ this.state.screens.max } readOnly />
         </div>
       </div>
 		);
 	}
 }
 
-export default Filterbyseat;
+export default Filterbyscreens;

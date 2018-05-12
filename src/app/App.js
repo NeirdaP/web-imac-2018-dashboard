@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
 import Searchbar from '../searchbar/searchbar.js';
 import Filterbyseat from '../filterbyseat/filterbyseat.js';
+import Filterbyscreens from '../filterbyscreens/filterbyscreens.js';
+import './App.css';
 import axios from "axios";
 
 class App extends Component {
@@ -39,7 +40,7 @@ class App extends Component {
 
 		switch(name){
 			case 'age':
-				this.setState({
+				this.setState({ 
 					age: value
 				})
 				break;
@@ -135,7 +136,7 @@ class App extends Component {
 					</div>
 
 					<div className="screenFilter">
-
+						<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={ this.setScreens } />
 					</div>
 
 					<div className="seatFilter">
