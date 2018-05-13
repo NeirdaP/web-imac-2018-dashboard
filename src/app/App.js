@@ -158,27 +158,27 @@ class App extends Component {
 
 					</div>
 
-					<div className="searchbar">
+					<div className="component searchbar">
 						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
 					</div>
 
-					<div className="screenFilter">
+					<div className="component screenFilter">
 						<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
 					</div>
 
-					<div className="seatFilter">
+					<div className="component seatFilter">
 						<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={this.setSeats} />
 					</div>
 
-					<div className="ageFilter">
+					<div className="component ageFilter">
 						<Filterbyage onAfterChange={this.search} setParentAgeSlider={this.setAge} />
 					</div>
 
-					<div className="freqFilter">
+					<div className="component freqFilter">
 						<Filterbyfreq onAfterChange={this.search} setParentFreqSlider={this.setFreq} />
 					</div>
 
-					<div className="artHouseFilter">
+					<div className="component artHouseFilter">
 						<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
 					</div>
 

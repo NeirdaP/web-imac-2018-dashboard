@@ -14,74 +14,37 @@ body > #root > div {
   }
 }
 
-.searchbar {
-	background-color: white;
+.component {
+  background-color: white;
+  width: 300px;
+  position: fixed;
+  left: 40px;
 
-	width: 300px;
-
-	position: fixed;
-	left: 40px;
-	top: 20px;
 	padding: 8px 20px;
 	border-radius: 3px;
-}
 
-.seatFilter {
-  background-color: white;
 
-  width: 300px;
+  &.searchbar {
+  	top: 20px;
+  }
 
-  position: fixed;
-  left: 40px;
-  top: 70px;
-  padding: 8px 20px;
-  border-radius: 3px;
-}
+  &.seatFilter {
+    top: 70px;
+  }
 
-.screenFilter {
-  background-color: white;
+  &.screenFilter {
+    top: 185px;
+  }
 
-  width: 300px;
+  &.ageFilter {
+    top: 295px;
+  }
 
-  position: fixed;
-  left: 40px;
-  top: 185px;
-  padding: 8px 20px;
-  border-radius: 3px;
-}
+  &.freqFilter {
+    top: 405px;
+  }
 
-.ageFilter {
-  background-color: white;
-
-  width: 300px;
-
-  position: fixed;
-  left: 40px;
-  top: 295px;
-  padding: 8px 20px;
-  border-radius: 3px;
-}
-
-.freqFilter {
-  background-color: white;
-
-  width: 300px;
-
-  position: fixed;
-  left: 40px;
-  top: 405px;
-  padding: 8px 20px;
-  border-radius: 3px;
-}
-
-.artHouseFilter {
-  background-color: white;
-
-  width: 300px;
-
-  position: fixed;
-  left: 40px;
-  top: 515px;
-  padding: 8px 20px;
-  border-radius: 3px;
+  &.artHouseFilter {
+    top: 515px;
+  }
 }
