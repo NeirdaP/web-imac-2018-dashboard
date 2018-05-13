@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\HomePage;
 
-use Illuminate\Http\Request;
+use DB;
+use Laravel\Lumen\Routing\Controller;
 
-//use app\Http\Request;       ??? est-ce que ça sert a qqch?
-use app\Http\Controllers\Controller;
-
-class SeatController extends Controller
+class GetSeats extends Controller
 {
    /*
     * Return the maximum and the minimum number of seats in the database

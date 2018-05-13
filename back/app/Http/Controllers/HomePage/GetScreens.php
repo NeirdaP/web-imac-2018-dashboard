@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\HomePage;
 
-use Illuminate\Http\Request;
-use appHttpControllers\Controller;
+use DB;
+use Laravel\Lumen\Routing\Controller;
 
-class ScreenController extends Controller
+class GetScreens extends Controller
 {
     /*
     * Return the maximum and the minimum number of rooms/screens in the database

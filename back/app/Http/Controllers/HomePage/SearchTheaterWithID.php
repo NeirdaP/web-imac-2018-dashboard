@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\HomePage;
 
-use Illuminate\Http\Request;
-use appHttpControllers\Controller;
+use DB;
+use Laravel\Lumen\Routing\Controller;
 
-class TheaterWithIdController extends Controller
+class searchTheaterWithID extends Controller
 {
     /*
     * Return the theater entry corresponding to the $id in the database

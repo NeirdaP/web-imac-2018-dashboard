@@ -11,16 +11,18 @@
 |
 */
 
+/* HomePage route : */
+
 $router->get('/', function(){
 	return redirect()->route('cinemas');
 });
 
 $router->get('/cinemas', [
-	'as' => 'cinemas', 'uses' => 'HomePage@searchTheater'
+	'as' => 'cinemas', 'uses' => 'HomePage\SearchTheater@searchTheater'
 ]);
 
-$router->get('/seats', 'HomePage@getSeats');
+$router->get('/seats', 'HomePage\GetSeats@getSeats');
 
-$router->get('/screens', 'HomePage@getScreens');
+$router->get('/screens', 'HomePage\GetScreens@getScreens');
 
-$router->get('/cinema/{id:[0-9]+}', 'HomePage@searchTeatherWithID');
+$router->get('/cinema/{id:[0-9]+}', 'HomePage\SearchTheaterWithID@searchTheaterWithID');
