@@ -1,6 +1,12 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
 body > #root > div {
   height: 100vh; // So that App is full height
 }
+
+
 
 .App {
  	font-family: Verdana;
@@ -9,19 +15,18 @@ body > #root > div {
 
   h2 {
     text-transform: uppercase;
-    font-size: 1.1em;
-    font-weight: lighter;
+    font-size: 0.9em;
   }
 }
 
 .component {
   background-color: white;
-  width: 300px;
+  width: 400px;
   position: fixed;
   left: 40px;
 
-	padding: 8px 20px;
-	border-radius: 3px;
+	padding: 15px 40px;
+	border-radius: 5px;
 
 
   &.searchbar {
@@ -29,22 +34,22 @@ body > #root > div {
   }
 
   &.seatFilter {
-    top: 70px;
+    top: 80px;
   }
 
   &.screenFilter {
-    top: 185px;
+    top: 195px;
   }
 
   &.ageFilter {
-    top: 295px;
+    top: 310px;
   }
 
   &.freqFilter {
-    top: 405px;
+    top: 425px;
   }
 
   &.artHouseFilter {
-    top: 515px;
+    top: 540px;
   }
 }
