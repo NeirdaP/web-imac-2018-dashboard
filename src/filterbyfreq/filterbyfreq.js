@@ -5,7 +5,7 @@ import { Range } from 'rc-slider';
 // import Slider from 'rc-slider/lib/Slider';
 // import Range from 'rc-slider/lib/Range';
 import 'rc-slider/assets/index.css';
-import axios from "axios"
+//import axios from "axios"
 
 /*ReactDOM.render(  <div>
     <Slider />

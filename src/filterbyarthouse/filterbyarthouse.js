@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './filterbyarthouse.css';
-import axios from "axios"
+//import axios from "axios"
 
 class Searchbar extends Component {
 	// CONSTRUTOR
