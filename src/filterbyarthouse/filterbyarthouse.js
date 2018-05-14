@@ -7,7 +7,7 @@ class Searchbar extends Component {
 		super(props);
 
 		this.state = {
-			artHouse: 2
+			artHouse: "2"
 		}
 
 		this.updateArtHouse = this.updateArtHouse.bind(this);
