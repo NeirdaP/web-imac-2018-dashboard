@@ -71,6 +71,11 @@ class App extends Component {
 					seats: value
 				});
 				break;
+			case 'searchWord':
+				this.setState({
+					searchWord: value
+				});
+				break;
 			default:
 				console.log('Erreur: switch default in setParameter(name, value).');
 				this.setState({
