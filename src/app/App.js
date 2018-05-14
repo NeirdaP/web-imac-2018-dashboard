@@ -16,14 +16,12 @@ class App extends Component {
 
 		this.state = {
 			cinemas: [],
-			parameters: {
-				searchWord: '',
-				artHouse: 2,
-				screens: {min: null, max: null},
-				seats: {min: null, max: null},
-				freq: {min: null, max: null},
-				age: {min: null, max: null}
-			}
+			searchWord: '',
+			artHouse: "2",
+			screens: {min: null, max: null},
+			seats: {min: null, max: null},
+			freq: {min: null, max: null},
+			age: {min: null, max: null}
 		}
 
 		this.setParameters = this.setParameter.bind(this);
@@ -129,7 +127,7 @@ class App extends Component {
 	// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas")
+			.get("http://localhost:80/dashboard/back/public/cinemas")
 			.then(response => {
 				console.log(response);
 				const newCinemas = response.data.map(c => {

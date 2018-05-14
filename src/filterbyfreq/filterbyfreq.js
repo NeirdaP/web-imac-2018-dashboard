@@ -5,6 +5,7 @@ import { Range } from 'rc-slider';
 // import Slider from 'rc-slider/lib/Slider';
 // import Range from 'rc-slider/lib/Range';
 import 'rc-slider/assets/index.css';
+import axios from "axios"
 
 /*ReactDOM.render(  <div>
     <Slider />
@@ -47,6 +48,30 @@ class Filterbyfreq extends Component {
 	search(){
 		this.props.search();
 	}
+
+	// AJAX Call pour récupérer les valeurs par défaut min/max du slider
+/*	componentDidMount(){
+		axios
+			.get("http://localhost/web-imac-2018-dashboard/back/public/freq")
+			.then(response => {
+				console.log(response);
+				const newFreq = response.data.map(c => {
+					return {
+					min: c.min,
+					max: c.max
+					};
+				});
+
+				// create a new "State" object without mutating the original State object.
+				const newState = Object.assign({}, this.state, {
+					freq: newFreq
+				});
+
+				// store the new state object in the component's state
+				this.setState(newState);
+			})
+			.catch(error => console.log(error));
+	}*/
 
 	// RENDER THE COMPONENT
 	render() {
