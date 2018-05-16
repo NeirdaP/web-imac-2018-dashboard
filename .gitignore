@@ -1,4 +1,4 @@
 /node_modules
 /src/**/*.css
-/build
+build
 back.tar
