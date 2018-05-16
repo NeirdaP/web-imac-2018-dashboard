@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "dockerfileLines": [
+    "FROM php:7.1-apache",
+    "RUN apt-get update",
+    "RUN apt-get install -y --no-install-recommends",
+    "RUN apt-get install -y git zip unzip",
+    "RUN docker-php-ext-install pdo_mysql",
+    "RUN mkdir -p /var/www/html",
+    "COPY ./src/ /var/www/html/",
+    "RUN chmod -R 777 /var/www/html/storage",
+    "RUN mv /var/www/html/.env.captain /var/www/html/.env",
+    "COPY ./src/docker/000-default.conf /etc/apache2/sites-available/000-default.conf",
+    "RUN php /var/www/html/composer.phar install -d /var/www/html/",
+    "RUN a2enmod rewrite expires",
+    "CMD [\"apache2-foreground\"]",
+    "EXPOSE 80"
+  ]
+}
