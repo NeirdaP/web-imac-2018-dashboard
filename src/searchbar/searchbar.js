@@ -8,6 +8,7 @@ class Searchbar extends Component {
 		super(props);
 		
 		this.updateKeyword = this.updateKeyword.bind(this);
+		this.search = this.search.bind(this);
 	}
 
 	// UPDATE KEYWORD IN APP 
@@ -15,12 +16,16 @@ class Searchbar extends Component {
 		this.props.setParentSearchword(e.target.value);
 	}
 	
+	search(){
+		this.props.search();
+	}
+	
 	// RENDER THE COMPONENT
 	render() {
 		return (
 			<div className="searchDiv">
 				<input placeholder="Find a movie theater..." type="text" onKeyUp={this.updateKeyword} />
-				<button onClick={this.search}><img src={searchIcon} width="25px" alt="searchImg"/></button>
+				<button onClick={this.search}><img src={searchIcon} width="20px" alt="searchImg"/></button>
 			</div>
 		);
 	}

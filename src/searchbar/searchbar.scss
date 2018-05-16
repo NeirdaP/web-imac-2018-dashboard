@@ -1,10 +1,9 @@
 .searchDiv {
-	background-color: white;
 	border-bottom: 1px solid #f6f6f6;
 	vertical-align: middle;
 	
 	input {
-		font-size: 1.4rem; // Rem pour faire par rapport à la racine pas l'élément parent
+		font-size: 0.9rem; // Rem pour faire par rapport à la racine pas l'élément parent
 		border: 0;
 		color: rgb(153, 153,153);
 	}
@@ -14,6 +13,8 @@
 	button {
 		background: 0;
 		border: 0;
+		float: right;
+		cursor: pointer;
 	}
 }
 
