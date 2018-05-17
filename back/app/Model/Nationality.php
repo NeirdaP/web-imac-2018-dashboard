@@ -1,17 +1,32 @@
-<?php namespace App;
+<?php 
+
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Nationality extends Model {
 
-    protected $fillable = [];
+    /*Attributes definition */
+    
+    protected $fillable = [
+      'countryCode',
+      'countryName'
+  ];
+    
+    /* Hidden elements */
+    
+     protected $hidden = [
+      'created_at',
+      'updated_at'
+  ];
 
-    protected $dates = [];
-
-    public static $rules = [
-        // Validation rules
-    ];
-
-    // Relationships
-
+    /* Relationships between Models */
+    
+    public function nationalityMovie() {
+        return $this -> hasMany('App\Model\Movie');
+    }
+    
+    public function nationalityCast() {
+        return $this -> belongsToMany('App\Model\Cast');
+    }
 }
