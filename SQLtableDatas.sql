@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `actors` (
-  `idCast` int(11) NOT NULL,
-  `idMovie` int(11) NOT NULL,
+  `cast_id` int(11) NOT NULL,
+  `movie_id` int(11) NOT NULL,
   `role` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -30,7 +30,7 @@ CREATE TABLE `actors` (
 -- Contenu de la table `actors`
 --
 
-INSERT INTO `actors` (`idCast`, `idMovie`, `role`) VALUES
+INSERT INTO `actors` (`cast_id`, `movie_id`, `role`) VALUES
 (1, 4, 'Iron Man'),
 (1, 7, 'Star Lord'),
 (1, 14, 'Captain America'),
@@ -88,15 +88,15 @@ INSERT INTO `casts` (`id`, `firstname`, `lastname`, `sex`, `nationalities`) VALU
 --
 
 CREATE TABLE `directors` (
-  `idCast` int(11) NOT NULL,
-  `idMovie` int(11) NOT NULL
+  `cast_id` int(11) NOT NULL,
+  `movie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contenu de la table `directors`
 --
 
-INSERT INTO `directors` (`idCast`, `idMovie`) VALUES
+INSERT INTO `directors` (`cast_id`, `movie_id`) VALUES
 (12, 0),
 (11, 4),
 (12, 5),
@@ -339,7 +339,7 @@ INSERT INTO `movies` (`id`, `title`, `blackAndWhite`, `releaseDate`, `imageLink`
 --
 
 CREATE TABLE `genre_movie` (
-  `idMovie` int(11) NOT NULL,
+  `movie_id` int(11) NOT NULL,
   `idGenre` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -347,7 +347,7 @@ CREATE TABLE `genre_movie` (
 -- Contenu de la table `genre_movie`
 --
 
-INSERT INTO `genre_movie` (`idMovie`, `idGenre`) VALUES
+INSERT INTO `genre_movie` (`movie_id`, `idGenre`) VALUES
 (9, 1),
 (14, 1),
 (8, 2),
@@ -371,7 +371,7 @@ INSERT INTO `genre_movie` (`idMovie`, `idGenre`) VALUES
 --
 
 CREATE TABLE `movie_theater` (
-  `idMovie` int(11) NOT NULL,
+  `movie_id` int(11) NOT NULL,
   `idTheater` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -379,7 +379,7 @@ CREATE TABLE `movie_theater` (
 -- Contenu de la table `movie_theater`
 --
 
-INSERT INTO `movie_theater` (`idMovie`, `idTheater`) VALUES
+INSERT INTO `movie_theater` (`movie_id`, `idTheater`) VALUES
 (4, 1),
 (9, 1),
 (15, 1),
@@ -484,8 +484,8 @@ INSERT INTO `theaters` (`id`, `name`, `address`, `postalCode`, `latitude`, `long
 -- Index pour la table `actors`
 --
 ALTER TABLE `actors`
-  ADD PRIMARY KEY (`idCast`,`idMovie`),
-  ADD KEY `actorMovie` (`idMovie`);
+  ADD PRIMARY KEY (`cast_id`,`movie_id`),
+  ADD KEY `actorMovie` (`movie_id`);
 
 --
 -- Index pour la table `casts`
@@ -498,8 +498,8 @@ ALTER TABLE `casts`
 -- Index pour la table `directors`
 --
 ALTER TABLE `directors`
-  ADD PRIMARY KEY (`idCast`,`idMovie`),
-  ADD KEY `directorMovie` (`idMovie`);
+  ADD PRIMARY KEY (`cast_id`,`movie_id`),
+  ADD KEY `directorMovie` (`movie_id`);
 
 --
 -- Index pour la table `frequentings`
@@ -525,14 +525,14 @@ ALTER TABLE `movies`
 -- Index pour la table `genre_movie`
 --
 ALTER TABLE `genre_movie`
-  ADD PRIMARY KEY (`idMovie`,`idGenre`),
+  ADD PRIMARY KEY (`movie_id`,`idGenre`),
   ADD KEY `MovieGenre_Genre` (`idGenre`);
 
 --
 -- Index pour la table `movie_theater`
 --
 ALTER TABLE `movie_theater`
-  ADD PRIMARY KEY (`idMovie`,`idTheater`),
+  ADD PRIMARY KEY (`movie_id`,`idTheater`),
   ADD KEY `MovieTheater_Theater` (`idTheater`);
 
 --
@@ -603,11 +603,11 @@ ALTER TABLE `movies`
 --
 ALTER TABLE `genre_movie`
   ADD CONSTRAINT `MovieGenre_Genre` FOREIGN KEY (`idGenre`) REFERENCES `genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `MovieGenre_Movie` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `MovieGenre_Movie` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `movie_theater`
 --
 ALTER TABLE `movie_theater`
-  ADD CONSTRAINT `MovieTheater_Movie` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `MovieTheater_Movie` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `MovieTheater_Theater` FOREIGN KEY (`idTheater`) REFERENCES `theaters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

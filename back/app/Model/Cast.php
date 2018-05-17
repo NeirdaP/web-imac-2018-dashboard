@@ -36,11 +36,11 @@ class Cast extends Model{
 
     public function moviesAsActor()
     {
-    	return $this->hasMany('App\Model\Movie','actor')->withPivot('role');
+    	return $this->belongsToMany('App\Model\Movie','actors')->withPivot('role');
     }
 
     public function moviesAsDirector()
     {
-    	return $this->hasMany('App\Model\Movie','director');
+    	return $this->belongsToMany('App\Model\Movie','directors');
     }
 }
