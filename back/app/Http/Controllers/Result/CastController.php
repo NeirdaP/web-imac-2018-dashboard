@@ -7,7 +7,7 @@ use App\Model\Cast;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
-class CastController extends Controller{
+class CastController extends Controller {
 
 	public function getCast($id)
 	{

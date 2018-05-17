@@ -27,6 +27,8 @@ $router->get('/screens', 'HomePage\GetScreens@getScreens');
 
 /* Result route */
 
-$router->get('/cinema/{id:[0-9]+}', 'Result\ResultController@getTheater');
+$router->get('/cinema/{id:[0-9]+}', 'Result\TheaterController@getTheater');
 
 $router->get('/cast/{id:[0-9]+}', 'Result\CastController@getCast');
+
+$router->get('/movie/{id:[0-9]+}', 'Result\MovieController@getMovie');

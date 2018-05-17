@@ -29,11 +29,11 @@ class Theater extends Model {
 
     /* Relationships between Models */
     
-    public function theaterMovie() {
-        return $this -> hasMany('App\Model\Movie', 'movietheater');
+    public function movies() {
+        return $this -> belongsToMany('App\Model\Movie', 'movie_theater');
     }
     
-    public function theaterFrequenting() {
-        return $this -> hasMany('App\Model\Frequenting');
+    public function frequentings() {
+        return $this -> belongsToMany('App\Model\Frequenting');
     }
 }

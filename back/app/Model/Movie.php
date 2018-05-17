@@ -35,11 +35,17 @@ class Movie extends Model {
         return $this->hasMany('App\Model\Theater', 'movietheater');
     }
     
-    public function movieNationality() {
+    public function nationality() {
         return $this->hasOne('App\Model\Nationality');
     }
     
-//    public function movieCast() {
-//        return $this -> 
-//    }
+    public function actors()
+    {
+        return $this->belongsToMany('App\Model\Cast','actors')->withPivot('role');
+    }
+
+    public function directors()
+    {
+        return $this->belongsToMany('App\Model\Cast','directors');
+    }
 }
