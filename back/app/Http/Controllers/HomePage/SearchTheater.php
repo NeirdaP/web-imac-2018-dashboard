@@ -26,11 +26,11 @@ class SearchTheater extends Controller
             $where = SearchTheater::getSearchTheaterParameters($request);
             $whereFlag = (empty($where))? 0 : 1;
             if (!$whereFlag){
-                $jsonResponse = DB::table('theater')
+                $jsonResponse = DB::table('theaters')
                     ->select($select)
                     ->get();
             } else {
-                $jsonResponse = DB::table('theater')
+                $jsonResponse = DB::table('theaters')
                     ->select($select)
                     ->where($where)                        
                     ->get();

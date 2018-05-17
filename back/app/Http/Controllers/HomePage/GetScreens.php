@@ -13,7 +13,7 @@ class GetScreens extends Controller
     public function getScreens()
     {
         try {
-            $jsonResponse = DB::table('theater')
+            $jsonResponse = DB::table('theaters')
                 ->select(DB::raw('
                     min(numberOfRoom) as min, 
                     max(numberOfRoom) as max

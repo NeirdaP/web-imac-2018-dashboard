@@ -12,7 +12,8 @@ class CastController extends Controller{
 	public function getCast($id)
 	{
 		$cast = Cast::find($id);
-		$cast->moviesAsDirector;
+		$cast->moviesAsActor;
+		$cast->movieAsDirector;
 		return response()->json($cast, 200);
 	}
 

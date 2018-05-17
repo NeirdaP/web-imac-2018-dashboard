@@ -13,7 +13,7 @@ class searchTheaterWithID extends Controller
     public function searchTheaterWithID($id)
     {
         try {
-            $jsonResponse = DB::table('theater')
+            $jsonResponse = DB::table('theaters')
                 ->select(
                     'name', 
                     'latitude', 

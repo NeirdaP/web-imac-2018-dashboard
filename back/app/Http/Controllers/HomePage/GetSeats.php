@@ -14,7 +14,7 @@ class GetSeats extends Controller
     public function getSeats()
         {
             try {
-                $jsonResponse = DB::table('theater')
+                $jsonResponse = DB::table('theaters')
                     ->select(DB::raw('
                         min(numberOfSeat) as min, 
                         max(numberOfSeat) as max
