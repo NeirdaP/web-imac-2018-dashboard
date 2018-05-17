@@ -1,17 +1,28 @@
-<?php namespace App;
+<?php 
+
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model {
 
-    protected $fillable = [];
-
-    protected $dates = [];
-
-    public static $rules = [
-        // Validation rules
+    /*Attributes definition */
+    
+    protected $fillable = [
+        'id',
+        'name'      
+    ];
+    
+    /* Hidden elements */
+    
+    protected $hidden = [
+      'created_at',
+      'updated_at'
     ];
 
-    // Relationships
+    /* Relationships between Models */
 
+    public function genreMovie() {
+        return $this -> belongsToMany('App\Model\Movie', 'moviegenre');
+    }
 }
