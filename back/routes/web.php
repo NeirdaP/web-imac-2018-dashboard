@@ -26,3 +26,7 @@ $router->get('/seats', 'HomePage\GetSeats@getSeats');
 $router->get('/screens', 'HomePage\GetScreens@getScreens');
 
 $router->get('/cinema/{id:[0-9]+}', 'HomePage\SearchTheaterWithID@searchTheaterWithID');
+
+/* Result route */
+
+$router->get('/cast/{id:[0-9]+}', 'Result\CastController@getCast');

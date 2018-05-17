@@ -1,17 +1,46 @@
-<?php namespace App;
+<?php 
+
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cast extends Model {
+class Cast extends Model{
 
-    protected $fillable = [];
+	protected $fillable = [
+		'id',
+		'firstname',
+		'lastname',
+		'sex',
+		'nationality'
+	];
 
-    protected $dates = [];
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+	    'created_at',
+	    'updated_at'
+	];
 
-    public static $rules = [
-        // Validation rules
-    ];
+    /**
+     * One to Many relation
+     *
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function nationality()
+    {
+    	return $this->belongsTo('App\Model\Nationality');
+    }
 
-    // Relationships
+    public function moviesAsActor()
+    {
+    	return $this->hasMany('App\Model\Movie','actor')->withPivot('role');
+    }
 
+    public function moviesAsDirector()
+    {
+    	return $this->hasMany('App\Model\Movie','director');
+    }
 }
