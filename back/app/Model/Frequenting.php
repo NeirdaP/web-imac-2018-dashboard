@@ -1,4 +1,6 @@
-<?php namespace App\Model;
+<?php 
+
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +26,6 @@ class Frequenting extends Model {
     /* Relationships between Models */
     
     public function frequentingTheater() {
-        return $this -> belongsTo('App\Model\Theater');
+        return $this->belongsTo('App\Model\Theater');
     }
 }
