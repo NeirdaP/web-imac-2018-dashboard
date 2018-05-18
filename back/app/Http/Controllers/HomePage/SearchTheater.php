@@ -35,7 +35,7 @@ class SearchTheater extends Controller
                     ->where($where)                        
                     ->get();
             }
-            return response()->json($jsonResponse);   
+            return response()->json($jsonResponse, 200);   
         } catch (\Exception $e) {
             die("Could not connect to the database.  Please check your configuration.");
         }

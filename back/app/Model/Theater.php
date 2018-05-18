@@ -20,8 +20,9 @@ class Theater extends Model {
         'artHouse'        
     ];
     
+    public $timestamps = false;
+
     /* Hidden elements */
-    
     protected $hidden = [
       'created_at',
       'updated_at'

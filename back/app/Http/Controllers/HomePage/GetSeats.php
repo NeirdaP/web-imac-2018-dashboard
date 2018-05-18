@@ -20,7 +20,7 @@ class GetSeats extends Controller
                         max(numberOfSeat) as max
                         '))
                     ->get();
-                return response()->json($jsonResponse);
+                return response()->json($jsonResponse, 200);
             } catch (\Exception $e) {
                 die("Could not connect to the database.  Please check your configuration.");
             }

@@ -32,3 +32,15 @@ $router->get('/cinema/{id:[0-9]+}', 'Result\TheaterController@getTheater');
 $router->get('/cast/{id:[0-9]+}', 'Result\CastController@getCast');
 
 $router->get('/movie/{id:[0-9]+}', 'Result\MovieController@getMovie');
+
+/* CRUD Theater (Create, "Read", Update, Delete) */
+
+/* Create */
+$router->post('cinema', 'Result\TheaterController@store');
+
+/* Update */
+$router->put('cinema/{id:[0-9]+}', 'Result\TheaterController@update');
+
+/* Delete */
+$router->delete('cinema/{id:[0-9]+}', 'Result\TheaterController@destroy');
+
