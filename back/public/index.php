@@ -1,4 +1,11 @@
 <?php
+/**
+* Allow queries from other servers
+* useful in development for localhost but not in production
+* because front.cinema-parisiens.fr and back.cinema-parisiens.fr
+* are on the same server
+*/
+header("Access-Control-Allow-Origin: *");
 
 /*
 |--------------------------------------------------------------------------
