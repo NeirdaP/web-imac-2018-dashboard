@@ -1,0 +1,25 @@
+$red : #ef4c4c;
+$greyred: #875656;
+
+.Cinema {
+  top: 20px;
+  z-index: 10;
+
+  h2 {
+    color: $red;
+    text-transform: uppercase;
+  }
+  p{
+    color:$greyred;
+  }
+
+  .ecranimg {
+    background-image: image("../../image/screen.png");
+    background-repeat: repeat-x;
+  }
+
+  .siegeimg {
+    background-image: image("../../image/siege.png");
+    background-repeat: repeat-x;
+  }
+}

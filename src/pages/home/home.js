@@ -8,6 +8,7 @@ import Filterbyage from './components/filterbyage/filterbyage.js';
 import Filterbyfreq from './components/filterbyfreq/filterbyfreq.js';
 import Filterbyarthouse from './components/filterbyarthouse/filterbyarthouse.js';
 import ResultList from './components/resultpage/resultlist';
+//import Cinemas from '../cinemas/cinemas.js';
 
 // STYLE OF THE COMPONENT
 import './home.css';
@@ -43,7 +44,7 @@ class Home extends Component {
 		this.setFreq = this.setFreq.bind(this);
 		this.setArtHouse = this.setArtHouse.bind(this);
 		this.search = this.search.bind(this);
-		this.showResult = this.showResult.bind(this);	
+		this.showResult = this.showResult.bind(this);
 		this.addMovie = this.addMovie.bind(this);
 		this.componentDidMount = this.componentDidMount.bind(this);
 	}
@@ -118,17 +119,17 @@ class Home extends Component {
 
 	// SEARCH FUNCTION FOR ALL SEARCHING FILTER
 	search(searchWord, screens, seats, age) {
-		
-		
+
+
 		console.log("Searching thanks to the AXIOS call in our API");
 		this.setState({showResultList: true});
 	}
-		
-	// SHOW THE LIST OF RESULT 
+
+	// SHOW THE LIST OF RESULT
 	showResult(){
 		this.setState({showResultList: false});
 	}
-	
+
 	// ADD A MOVIE TO THE APP
 	addMovie(){
 		console.log("Here should be the call for the creation of a movie");
@@ -137,7 +138,7 @@ class Home extends Component {
 	// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas")
+			.get("http://back.cinema-parisiens.fr/cinemas")
 			.then(response => {
 				console.log(response);
 				const newCinemas = response.data.map(c => {
@@ -165,7 +166,7 @@ class Home extends Component {
 	// RENDER THE COMPONENT
 	render() {
 		const showResultList = this.state.showResultList;
-		
+
 		// TO SHOW THE LIST OR THE SEARCH FILTERS
 		const resultList = showResultList ? (
 			<ResultList showResult={this.showResult} cinemas={this.state.cinemas} />
@@ -198,9 +199,9 @@ class Home extends Component {
 					<div className="component searchbar">
 						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
 					</div>
-									
+
 					{resultList}
-					
+
 					<button className="addMovieButton" onClick={this.addMovie}><img src={addMovie} alt="addMovie"></img></button>
 			</div>
 		);
