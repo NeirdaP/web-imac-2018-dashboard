@@ -9,10 +9,6 @@ import './App.scss';
 import Home from './pages/home/home';
 
 class App extends Component {
-	/*constructor (props) {
-		super(props);
-	}*/
-	
 	render() {
 		return (
 			<HashRouter>

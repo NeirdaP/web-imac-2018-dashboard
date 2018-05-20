@@ -8,6 +8,8 @@ import Filterbyage from './components/filterbyage/filterbyage.js';
 import Filterbyfreq from './components/filterbyfreq/filterbyfreq.js';
 import Filterbyarthouse from './components/filterbyarthouse/filterbyarthouse.js';
 import ResultList from './components/resultpage/resultlist';
+import { GoogleApiWrapper } from 'google-maps-react'
+import MapContainer from '../../MapContainer/MapContainer';
 
 // STYLE OF THE COMPONENT
 import './home.css';
@@ -44,7 +46,7 @@ class Home extends Component {
 		this.setFreq = this.setFreq.bind(this);
 		this.setArtHouse = this.setArtHouse.bind(this);
 		this.search = this.search.bind(this);
-		this.showResult = this.showResult.bind(this);	
+		this.showResult = this.showResult.bind(this);
 		this.addMovie = this.addMovie.bind(this);
 		this.componentDidMount = this.componentDidMount.bind(this);
 	}
@@ -89,7 +91,6 @@ class Home extends Component {
 				});
 				break;
 		}
-		console.log(this.state)
 	}
 
 	// SETTERS
@@ -124,15 +125,14 @@ class Home extends Component {
 		const screensMin = this.state.screens['min'];
 		const screensMax = this.state.screens['max'];
 		const searchWord = this.state.searchWord;
+		const artHouse = this.state.artHouse;
 		
 		// CALL
 		axios
-			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas?seats=" + seatsMin + "," + seatsMax + "&screens=" + screensMin + "," + screensMax + "&keyword=" + searchWord)
+			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas?seats=" + seatsMin + "," + seatsMax + "&screens=" + screensMin + "," + screensMax + "&keyword=" + searchWord + "&artHouse=" + artHouse)
 			.then(response => {
-				console.log("RESPONSE");
-				console.log(response);
 				const cinemasFound = response.data.map(c => {
-					return {
+					return {	
 						name: c.name,
 						latitude: c.latitude,
 						longitude: c.longitude,
@@ -141,23 +141,28 @@ class Home extends Component {
 						artHouse: c.artHouse
 					};
 				});
+			
 				const newState = Object.assign({}, this.state, {
 					cinemasFound: cinemasFound
 				});
 			
-			this.setState(newState);
+				this.setState(newState);
+				
+				this.refs.mapContainer.setCinemas(cinemasFound);				
+				this.refs.mapContainer.addMarkers();
 			})
 			.catch(error => console.log(error))
 		
-		// NOW SHOW ME THE RESULT
 		this.setState({showResultList: true});
 	}
-		
-	// SHOW THE LIST OF RESULT 
+
+	// HIDE THE LIST OF RESULT
+	// REMOVE THE MARKERS
 	showResult(){
 		this.setState({showResultList: false});
+		this.refs.mapContainer.removeMarkers();
 	}
-	
+
 	// ADD A MOVIE TO THE APP
 	addMovie(){
 		console.log("Here should be the call for the creation of a movie");
@@ -166,7 +171,7 @@ class Home extends Component {
 	// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas")
+			.get("http://back.cinema-parisiens.fr//cinemas")
 			.then(response => {
 				const newCinemas = response.data.map(c => {
 				  return {
@@ -186,6 +191,9 @@ class Home extends Component {
 
 				// store the new state object in the component's state
 				this.setState(newState);
+			
+				this.refs.mapContainer.setCinemas(newCinemas);				
+				this.refs.mapContainer.addMarkers();
 			})
 			.catch(error => console.log(error));
 	}
@@ -193,7 +201,7 @@ class Home extends Component {
 	// RENDER THE COMPONENT
 	render() {
 		const showResultList = this.state.showResultList;
-		
+
 		// TO SHOW THE LIST OR THE SEARCH FILTERS
 		const resultList = showResultList ? (
 			<ResultList showResult={this.showResult} cinemas={this.state.cinemasFound} />
@@ -223,16 +231,23 @@ class Home extends Component {
 
 		return (
 			<div className="Home">
-					<div className="component searchbar">
-						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
-					</div>
-									
-					{resultList}
-					
-					<button className="addMovieButton" onClick={this.addMovie}><img src={addMovie} alt="addMovie"></img></button>
+				<MapContainer google={this.props.google} ref="mapContainer" />
+			
+				<div className="component searchbar">
+					<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
+				</div>
+
+				{resultList}
+
+				<button className="addMovieButton" onClick={this.addMovie}>
+					<img src={addMovie} alt="addMovie" />
+				</button>
 			</div>
 		);
 	}
 }
 
-export default Home;
+export default GoogleApiWrapper({ //export the component with the Google API KEY
+  apiKey: 'AIzaSyBdxqALW1_yFPqrBXWxURqbYPWMsu-OsPU' //PLS DON'T REMOVE NOR REPLACE
+})(Home)
+// export default Home; //should be removed
