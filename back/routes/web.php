@@ -11,18 +11,44 @@
 |
 */
 
+/* HomePage routes : */
+/*
+* route to the homepage
+*/
 $router->get('/', function(){
 	return redirect()->route('cinemas');
 });
 
+/*
+* return a list of theaters
+*/
 $router->get('/cinemas', [
-	'as' => 'cinemas', 'uses' => 'HomePage@allTheater'
+	'as' => 'cinemas', 'uses' => 'HomePage\SearchTheater@searchTheater'
 ]);
 
-$router->get('/cinemas/{id:[0-9]+}', 'HomePage@searchTeatherWithID');
+/*
+* return the minimum and the maximum number of seats
+*/
+$router->get('/seats', 'HomePage\GetSeats@getSeats');
 
-$router->get('/cinemas/keyword={string}', 'HomePage@searchTeatherWithKeyword');
+/*
+* return the minimum and the maximum number of screens
+*/
+$router->get('/screens', 'HomePage\GetScreens@getScreens');
 
-$router->get('/cinemas/seats={min},{max}', 'HomePage@searchTeatherWithSeats');
+/* Result routes : */
+/*
+* return all information about the theater
+*/
+$router->get('/cinema/{id:[0-9]+}', 'Result\TheaterController@getTheater');
 
-$router->get('/cinemas/screens={min},{max}', 'HomePage@searchTheaterWithScreens');
+/* CRUD for the table Theater (Create, "Read", Update, Delete) : */
+/* Create */
+$router->post('cinema', 'Result\TheaterController@store');
+
+/* Update */
+$router->put('cinema/{id:[0-9]+}', 'Result\TheaterController@update');
+
+/* Delete */
+$router->delete('cinema/{id:[0-9]+}', 'Result\TheaterController@destroy');
+

@@ -1,0 +1,7 @@
+.App {
+  text-align: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  font-family: Verdana;
+  color: #4eb0ae; }

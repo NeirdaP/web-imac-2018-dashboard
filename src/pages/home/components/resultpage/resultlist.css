@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.resultList {
+  width: 400px;
+  position: fixed;
+  left: 40px;
+  top: 80px;
+  bottom: 20px;
+  overflow: hidden;
+  padding-top: 53px;
+  border-radius: 5px;
+  background-color: #2b2b2b; }
+  .resultList ul {
+    padding: 0;
+    margin: 0; }
+  .resultList li {
+    padding: 15px 30px;
+    position: relative;
+    list-style: none;
+    border-bottom: 1px solid white; }
+  .resultList li > ul {
+    border-top: 1px solid white; }
+  .resultList li:last-child {
+    border: none; }
+  .resultList .resultTitle {
+    height: 53px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 1em;
+    padding: 15px 30px;
+    background-color: #ec4e50;
+    vertical-align: middle; }
+    .resultList .resultTitle h2 {
+      float: left;
+      margin: 0px;
+      padding: 6px 0px;
+      color: #2b2b2b; }
+    .resultList .resultTitle button {
+      background: 0px;
+      border: 0px;
+      float: right;
+      cursor: pointer;
+      padding-top: 5px; }
+      .resultList .resultTitle button image {
+        width: 20px; }
+  .resultList .cinema {
+    height: 100%;
+    overflow: auto;
+    cursor: pointer; }
+    .resultList .cinema .nameCinema {
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
+      color: #ec4e50; }
+      .resultList .cinema .nameCinema::before {
+        content: '•';
+        display: block;
+        position: absolute;
+        right: 100%;
+        padding-right: 6px;
+        top: 0; }
+    .resultList .cinema .adresseCinema {
+      color: #8c8c8c; }
