@@ -2,7 +2,11 @@
 	border-bottom: 1px solid #f6f6f6;
 	vertical-align: middle;
 	
+	position: relative;
+	
 	input {
+		display: block;
+		width: 100%;
 		font-size: 0.9rem; // Rem pour faire par rapport à la racine pas l'élément parent
 		border: 0;
 		color: rgb(153, 153,153);
@@ -10,7 +14,11 @@
 	input:focus {
 		color: rgb(237,78,80);
 	}
-	button {
+	.searchButton {
+		position: absolute;
+		top: 0;
+		right: 0;
+		
 		background: 0;
 		border: 0;
 		float: right;

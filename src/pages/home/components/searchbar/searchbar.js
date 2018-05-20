@@ -17,7 +17,11 @@ class Searchbar extends Component {
 
 	// UPDATE KEYWORD IN APP 
 	updateKeyword(e) {
-		this.props.setParentSearchword(e.target.value);
+		if(e.keyCode === 13){
+			this.search();
+		} else {
+			this.props.setParentSearchword(e.target.value);
+		}
 	}
 	
 	search(e){
@@ -29,7 +33,7 @@ class Searchbar extends Component {
 		return (
 			<div className="searchDiv">
 				<input placeholder="Find a movie theater..." type="text" onKeyUp={this.updateKeyword} />
-				<button onClick={this.search}><img src={searchIcon} width="20px" alt="searchImg"/></button>
+				<button className="searchButton" onClick={this.search}><img src={searchIcon} width="20px" alt="searchImg"/></button>
 			</div>
 		);
 	}

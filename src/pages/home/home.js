@@ -26,6 +26,7 @@ class Home extends Component {
 
 		this.state = {
 			cinemas: [],
+			cinemasFound: [],
 			searchWord: '',
 			artHouse: "2",
 			screens: {min: null, max: null},
@@ -117,10 +118,38 @@ class Home extends Component {
 	}
 
 	// SEARCH FUNCTION FOR ALL SEARCHING FILTER
-	search(searchWord, screens, seats, age) {
+	search() {
+		const seatsMin = this.state.seats['min'];
+		const seatsMax = this.state.seats['max'];
+		const screensMin = this.state.screens['min'];
+		const screensMax = this.state.screens['max'];
+		const searchWord = this.state.searchWord;
 		
+		// CALL
+		axios
+			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas?seats=" + seatsMin + "," + seatsMax + "&screens=" + screensMin + "," + screensMax + "&keyword=" + searchWord)
+			.then(response => {
+				console.log("RESPONSE");
+				console.log(response);
+				const cinemasFound = response.data.map(c => {
+					return {
+						name: c.name,
+						latitude: c.latitude,
+						longitude: c.longitude,
+						numberOfSeat: c.numberOfSeat,
+						numberOfScreen: c.numberOfScreen,
+						artHouse: c.artHouse
+					};
+				});
+				const newState = Object.assign({}, this.state, {
+					cinemasFound: cinemasFound
+				});
+			
+			this.setState(newState);
+			})
+			.catch(error => console.log(error))
 		
-		console.log("Searching thanks to the AXIOS call in our API");
+		// NOW SHOW ME THE RESULT
 		this.setState({showResultList: true});
 	}
 		
@@ -139,7 +168,6 @@ class Home extends Component {
 		axios
 			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas")
 			.then(response => {
-				console.log(response);
 				const newCinemas = response.data.map(c => {
 				  return {
 					name: c.name,
@@ -168,7 +196,7 @@ class Home extends Component {
 		
 		// TO SHOW THE LIST OR THE SEARCH FILTERS
 		const resultList = showResultList ? (
-			<ResultList showResult={this.showResult} cinemas={this.state.cinemas} />
+			<ResultList showResult={this.showResult} cinemas={this.state.cinemasFound} />
 		) : (
 			<div className="searchDivs">
 				<div className="component screenFilter">
