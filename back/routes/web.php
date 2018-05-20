@@ -11,30 +11,38 @@
 |
 */
 
-/* HomePage route : */
-
+/* HomePage routes : */
+/*
+* route to the homepage
+*/
 $router->get('/', function(){
 	return redirect()->route('cinemas');
 });
 
+/*
+* return a list of theaters
+*/
 $router->get('/cinemas', [
 	'as' => 'cinemas', 'uses' => 'HomePage\SearchTheater@searchTheater'
 ]);
 
+/*
+* return the minimum and the maximum number of seats
+*/
 $router->get('/seats', 'HomePage\GetSeats@getSeats');
 
+/*
+* return the minimum and the maximum number of screens
+*/
 $router->get('/screens', 'HomePage\GetScreens@getScreens');
 
-/* Result route */
-
+/* Result routes : */
+/*
+* return all information about the theater
+*/
 $router->get('/cinema/{id:[0-9]+}', 'Result\TheaterController@getTheater');
 
-$router->get('/cast/{id:[0-9]+}', 'Result\CastController@getCast');
-
-$router->get('/movie/{id:[0-9]+}', 'Result\MovieController@getMovie');
-
-/* CRUD Theater (Create, "Read", Update, Delete) */
-
+/* CRUD for the table Theater (Create, "Read", Update, Delete) : */
 /* Create */
 $router->post('cinema', 'Result\TheaterController@store');
 

@@ -22,11 +22,11 @@ class Nationality extends Model {
 
     /* Relationships between Models */
     
-    public function nationalityMovie() {
+    public function movies() {
         return $this -> hasMany('App\Model\Movie');
     }
     
-    public function nationalityCast() {
+    public function casts() {
         return $this -> belongsToMany('App\Model\Cast');
     }
 }

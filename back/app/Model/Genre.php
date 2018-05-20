@@ -22,7 +22,7 @@ class Genre extends Model {
 
     /* Relationships between Models */
 
-    public function genreMovie() {
-        return $this -> belongsToMany('App\Model\Movie', 'moviegenre');
+    public function movies() {
+        return $this->belongsToMany('App\Model\Movie', 'moviegenre');
     }
 }

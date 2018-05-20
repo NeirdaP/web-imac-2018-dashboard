@@ -31,10 +31,6 @@ class Theater extends Model {
     /* Relationships between Models */
     
     public function movies() {
-        return $this -> belongsToMany('App\Model\Movie', 'movie_theater');
-    }
-    
-    public function frequentings() {
-        return $this -> belongsToMany('App\Model\Frequenting');
+        return $this->belongsToMany('App\Model\Movie', 'movie_theater');
     }
 }

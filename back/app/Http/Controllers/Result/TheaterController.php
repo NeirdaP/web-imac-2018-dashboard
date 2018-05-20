@@ -8,7 +8,7 @@ use App\Model\Theater;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
-class TheaterController extends Controller{
+class TheaterController extends Controller {
 
 	public function __construct(Theater $theater){
 		$this->theater = $theater;
@@ -88,84 +88,26 @@ class TheaterController extends Controller{
 			$jsonResponse["numberOfRoom"] = $theater["numberOfRoom"];
 			$jsonResponse["numberOfSeat"] = $theater["numberOfSeat"];
 
-			//$theater->movies;
-
 			/* Actors/Actresses Informations */
-			$actor = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
-				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
-				->join('actors', 'movies.id', '=', 'actors.movie_id')
-				->join('casts', 'actors.cast_id', '=', 'casts.id')
-				->select(DB::raw("count(*) as actorsNumber"))
-				->where('sex', 'M')
-				->where('theaters.id',$id)
-				->first();
-			$actress = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
-				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
-				->join('actors', 'movies.id', '=', 'actors.movie_id')
-				->join('casts', 'actors.cast_id', '=', 'casts.id')
-				->select(DB::raw("count(*) as actressesNumber"))
-				->where('sex', 'F')
-				->where('theaters.id',$id)
-				->first();
-			$jsonResponse["actors"] = $actor["actorsNumber"];
-			$jsonResponse["actresses"] = $actress["actressesNumber"];
-			
+			$actorsInformation = $this->getActorsInfo($theater);
+			$jsonResponse["actors"] = $actorsInformation['actors'];
+			$jsonResponse["actresses"] = $actorsInformation['actresses'];
+		
 			/* Directors/Directresses Informations */
-			$director = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
-				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
-				->join('directors', 'movies.id', '=', 'directors.movie_id')
-				->join('casts', 'directors.cast_id', '=', 'casts.id')
-				->select(DB::raw("count(*) as directorNumber"))
-				->where('sex', 'M')
-				->where('theaters.id',$id)
-				->first();
-			$directress = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
-				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
-				->join('directors', 'movies.id', '=', 'directors.movie_id')
-				->join('casts', 'directors.cast_id', '=', 'casts.id')
-				->select(DB::raw("count(*) as directressNumber"))
-				->where('sex', 'F')
-				->where('theaters.id',$id)
-				->first();
-			$jsonResponse["directors"] = $director["directorNumber"];
-			$jsonResponse["directresses"] = $directress["directressNumber"];
+			$directorsInformation = $this->getDirectorsInfo($theater);
+			$jsonResponse["directors"] = $directorsInformation['directors'];
+			$jsonResponse["directresses"] = $directorsInformation['directresses'];
 
 			/* Colorimetry percentage */
-			$color = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
-				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
-				->select(DB::raw("count(*) as colorNumber"))
-				->where('blackAndWhite', '0')
-				->where('theaters.id', $id)
-				->first();
-			$blackAndWhite = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
-				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
-				->select(DB::raw("count(*) as blackAndWhiteNumber"))
-				->where('blackAndWhite', '1')
-				->where('theaters.id', $id)
-				->first();
-			$jsonResponse["color"] = $color["colorNumber"];
-			$jsonResponse["blackAndWhite"] = $blackAndWhite["blackAndWhiteNumber"];
+			$colorimetryInformation = $this->getColorimetryInfo($theater);
+			$jsonResponse["blackAndWhite"] = $colorimetryInformation['blackAndWhite'];
+			$jsonResponse["color"] = $colorimetryInformation['color'];
 
 			/* Number of movie per genre */
-			$genres = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
-				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
-				->join('genre_movie', 'movies.id', '=', 'genre_movie.movie_id')
-				->join('genres', 'genre_movie.genre_id', '=', 'genres.id')
-				->select('genres.name', DB::raw('count(*) as genreNumber'))
-				->where('theaters.id',$id)
-				->groupBy('genres.name')
-				->get();
-			$jsonResponse["genres"] = $genres;
+			$jsonResponse["genres"] =  $this->getGenresInfo($id);
 
 			/* Number of movie per nationality */
-			$nationalities = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
-				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
-				->join('nationalities', 'movies.nationalities', '=', 'nationalities.countryCode')
-				->select('nationalities.countryName', DB::raw('count(*) as countryNumber'))
-				->where('theaters.id',$id)
-				->groupBy('nationalities.countryName')
-				->get();
-			$jsonResponse["nationalities"] = $nationalities;
+			$jsonResponse["nationalities"] = $this->getNationalitiesInfo($id);
 
 			return response()->json($jsonResponse, 200);
 
@@ -173,6 +115,112 @@ class TheaterController extends Controller{
             die("Could not connect to the database.  Please check your configuration.");
         }
 	}
-}
 
+	/* 
+	 * Return the distribution between male and female actors within the movies 
+	 * displayed in the theater 
+	*/
+	public function getActorsInfo($theater){
+		$response = array();
+		$total = 0;
+		$male = 0;
+		$female = 0;
+		foreach ($theater->movies as $movie){
+			foreach($movie->actors as $actor){
+				$total++;
+				$male += ($actor['sex'] == 'M') ? 1 : 0;
+				$female += ($actor['sex'] == 'F') ? 1 : 0;
+			}
+		}
+		if ($total == 0){
+			$response["actors"] = 0;
+			$response["actresses"] = 0;
+		} else {
+			$response["actors"] = ($male*100)/$total;
+			$response["actresses"] = ($female*100)/$total;
+		}
+		return $response;
+	}
+
+	/* 
+	 * Return the distribution between male and female directors within the movies 
+	 * displayed in the theater 
+	*/
+	public function getDirectorsInfo($theater){
+		$response = array();
+		$total = 0;
+		$male = 0;
+		$female = 0;
+		foreach ($theater->movies as $movie){
+			foreach($movie->directors as $directors){
+				$total++;
+				$male += ($directors['sex'] == 'M') ? 1 : 0;
+				$female += ($directors['sex'] == 'F') ? 1 : 0;
+			}
+		}
+		if ($total == 0){
+			$response["directors"] = 0;
+			$response["directresses"] = 0;
+		} else {
+			$response["directors"] = ($male*100)/$total;
+			$response["directresses"] = ($female*100)/$total;
+		}
+		return $response;
+	}
+
+	/* 
+	 * Return the distribution between colored and black and white movies 
+	 * displayed in the theater 
+	*/
+	public function getColorimetryInfo($theater){
+		$response = array();
+		$total = 0;
+		$BnW = 0;
+		$colored = 0;
+		foreach($theater->movies as $movie){
+			$total++;
+			$BnW += ($movie['blackAndWhite'] == 1)? 1 : 0;
+			$colored += ($movie['blackAndWhite'] == 0)? 1 : 0;
+		}
+		if ($total == 0){
+			$response["blackAndWhite"] = 0;
+			$response["color"] = 0;
+		} else {
+			$response["blackAndWhite"] = ($BnW*100)/$total;
+			$response["color"] = ($colored*100)/$total;
+		}
+		return $response;
+	}
+
+	/*
+	 * Return the distribution of genres within the movies displayed in the theater
+	*/
+	public function getGenresInfo($id){
+		$genres = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
+				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
+				->join('genre_movie', 'movies.id', '=', 'genre_movie.movie_id')
+				->join('genres', 'genre_movie.genre_id', '=', 'genres.id')
+				->select('genres.name', DB::raw('count(*) as genreNumber'))
+				->where('theaters.id',$id)
+				->groupBy('genres.name')
+				->get();
+		return $genres;
+	}
+
+	/*
+	 * Return the distribution of nationalities within the movies displayed in the 
+	 * theater
+	*/
+	public function getNationalitiesInfo($id){
+		$nationalities = Theater::join('movie_theater', 'theaters.id', '=', 'movie_theater.theater_id')
+				->join('movies', 'movie_theater.movie_id', '=', 'movies.id')
+				->join('nationalities', 'movies.nationalities', '=', 'nationalities.countryCode')
+				->select('nationalities.countryName', DB::raw('count(*) as countryNumber'))
+				->where('theaters.id',$id)
+				->groupBy('nationalities.countryName')
+				->get();
+		return $nationalities;
+	}
+
+}
 ?>

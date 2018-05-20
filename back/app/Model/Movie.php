@@ -27,12 +27,12 @@ class Movie extends Model {
 
     /* Relationships between Models */
     
-    public function movieGenre() {
-        return $this->hasMany('App\Model\Genre', 'moviegenre');
+    public function genres() {
+        return $this->hasMany('App\Model\Genre', 'movie_genre');
     }
     
-    public function movieTheater() {
-        return $this->hasMany('App\Model\Theater', 'movietheater');
+    public function theaters() {
+        return $this->hasMany('App\Model\Theater', 'movie_theater');
     }
     
     public function nationality() {
