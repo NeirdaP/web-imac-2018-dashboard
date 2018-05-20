@@ -37,7 +37,7 @@ class SearchTheater extends Controller
             }
             return response()->json($jsonResponse, 200);   
         } catch (\Exception $e) {
-            die("Could not connect to the database.  Please check your configuration.");
+            return redirect()->route('cinemas');
         }
     }
 
@@ -68,6 +68,17 @@ class SearchTheater extends Controller
             } else {
                 array_push($where, ["numberOfSeat",">=",$strings[0]]);
                 array_push($where, ["numberOfSeat","<=",$strings[1]]);
+            }
+        }
+        if ($request->has('artHouse')){
+            if ($request->input('artHouse') < 0 || $request->input('artHouse') > 2){
+                return "Invalid argument for parameter artHouse";
+            }
+            else if ($request->input('artHouse') == 1){
+                array_push($where, ["artHouse","=",0]);
+            }
+            else if($request->input('artHouse') == 2){
+                array_push($where, ["artHouse","=",1]);
             }
         }
         return $where;
