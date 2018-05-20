@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import './resultlist.css';
 
 class ResultList extends Component {
-	constructor(props){
-		super(props);	
-	}
+//	constructor(props){
+//		super(props);	
+//	}
 	
 	render() {
 		return (
 			<div className="resultList">
-				Test
+				Here comes the list!
 			</div>
 		);
 	}

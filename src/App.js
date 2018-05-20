@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
 
 import './App.scss';
 import Home from './pages/home/home';
+import ResultList from './pages/resultpage/resultlist';
 
 class App extends Component {
 	/*constructor (props) {
@@ -11,11 +17,12 @@ class App extends Component {
 	
 	render() {
 		return (
-			<main>
-				<Switch>
-        			<Route path='/' component={Home}/>
-				</Switch>
-			</main>
+			<HashRouter>
+				<div>
+   					<Route exact path="/" component={Home}/>
+            		<Route path="/resultlist" component={ResultList}/>
+				</div>
+			</HashRouter>
 		)
 	}
 }

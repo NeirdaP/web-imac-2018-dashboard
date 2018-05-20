@@ -15,17 +15,14 @@ body {
 
 .filter .values {
   position: relative; }
-
-.filter .values input {
-  display: inline-block;
-  color: #999;
-  border: none; }
-
-.filter .values input.min-value {
-  left: 0;
-  text-align: left; }
-
-.filter .values input.max-value {
-  position: absolute;
-  right: 0;
-  text-align: right; }
+  .filter .values input {
+    display: inline-block;
+    color: #999;
+    border: none; }
+    .filter .values input.min-value {
+      left: 0;
+      text-align: left; }
+    .filter .values input.max-value {
+      position: absolute;
+      right: 0;
+      text-align: right; }
