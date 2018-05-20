@@ -1,0 +1,35 @@
+.filter {
+
+  .rc-slider-track {
+    background-color: black;
+  }
+
+  .rc-slider-handle {
+    border-color: red;
+  }
+
+  .rc-slider-rail {
+    background-color: #eee;
+  }
+
+  .values{
+    position: relative;
+
+    input {
+      display: inline-block;
+      color:#999;
+      border: none;
+
+      &.min-value {
+        left:0;
+        text-align: left;
+      }
+
+      &.max-value {
+        position: absolute;
+        right: 0;
+        text-align: right;
+      }
+    }
+  }
+}

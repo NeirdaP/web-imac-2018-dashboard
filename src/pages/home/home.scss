@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.Home {
+	height: 100vh; // So that App is full height
+ 	font-family: Verdana;
+ 	color: #010101;
+	background-color: red;
+
+  h2 {
+    text-transform: uppercase;
+    font-size: 0.9em;
+  }
+}
+
+.component {
+  background-color: white;
+  width: 400px;
+  position: fixed;
+  left: 40px;
+
+	padding: 15px 40px;
+	border-radius: 5px;
+
+
+  &.searchbar {
+  	top: 20px;
+  }
+
+  &.seatFilter {
+    top: 80px;
+  }
+
+  &.screenFilter {
+    top: 195px;
+  }
+
+  &.ageFilter {
+    top: 310px;
+  }
+
+  &.freqFilter {
+    top: 425px;
+  }
+
+  &.artHouseFilter {
+    top: 540px;
+  }
+}
