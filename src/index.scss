@@ -1,3 +1,6 @@
+$red: rgb(237, 77,80);
+$darkgrey: #2b2b2b;
+
 body {
   margin: 0;
   padding: 10;
@@ -8,14 +11,15 @@ body {
 .filter {
 
   .rc-slider-track {
-    background-color: black;
+    background-color: $darkgrey;
   }
 
   .rc-slider-handle {
-    border-color: red;
+    border-color: $red;
   }
 
   .rc-slider-rail {
+	color: blue;
     background-color: #eee;
   }
 

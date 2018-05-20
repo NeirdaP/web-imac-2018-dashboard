@@ -5,6 +5,7 @@ import Filterbyscreens from './components/filterbyscreens/filterbyscreens.js';
 import Filterbyage from './components/filterbyage/filterbyage.js';
 import Filterbyfreq from './components/filterbyfreq/filterbyfreq.js';
 import Filterbyarthouse from './components/filterbyarthouse/filterbyarthouse.js';
+import ResultList from './components/resultpage/resultlist';
 import './home.css';
 import axios from "axios";
 
@@ -21,7 +22,8 @@ class Home extends Component {
 			screens: {min: null, max: null},
 			seats: {min: null, max: null},
 			freq: {min: null, max: null},
-			age: {min: null, max: null}
+			age: {min: null, max: null},
+			showResultList: false
 		}
 
 		this.setParameters = this.setParameter.bind(this);
@@ -32,9 +34,11 @@ class Home extends Component {
 		this.setFreq = this.setFreq.bind(this);
 		this.setArtHouse = this.setArtHouse.bind(this);
 		this.search = this.search.bind(this);
-		this.componentDidMount = this.componentDidMount.bind(this);
-
 		this.printState = this.printState.bind(this);
+
+		this.showResult = this.showResult.bind(this);	
+		
+		this.componentDidMount = this.componentDidMount.bind(this);
 	}
 
 	//SETTERS
@@ -117,6 +121,7 @@ class Home extends Component {
 	// Fonction de recherche que tous les composants de la page principale utiliseront
 	search(searchWord, screens, seats, age) {
 		console.log("searching");
+		this.setState({showResultList: true});
 		// Vérifier qu'il y a qqch
 	}
 
@@ -124,10 +129,16 @@ class Home extends Component {
 		console.log(this.state.cinemas);
 	}
 
+		
+	showResult(){
+		this.setState({showResultList: false});
+	}
+
+
 	// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://localhost:80/dashboard/back/public/cinemas")
+			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas")
 			.then(response => {
 				console.log(response);
 				const newCinemas = response.data.map(c => {
@@ -154,15 +165,14 @@ class Home extends Component {
 
 	// RENDER THE COMPONENT
 	render() {
-		return (
-			<div className="Home">
-				<div className="searchDivs">
+		const showResultList = this.state.showResultList;
+		
+		const resultList = showResultList ? (
+			<ResultList showResult={this.showResult} cinemas={this.state.cinemas} />
+		) : (
+			<div className="searchDivs">
 					<div className="map">
 
-					</div>
-
-					<div className="component searchbar">
-						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
 					</div>
 
 					<div className="component screenFilter">
@@ -184,11 +194,19 @@ class Home extends Component {
 					<div className="component artHouseFilter">
 						<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
 					</div>
+			</div>
+		);
 
+		
+		return (
+			<div className="Home">
+					<div className="component searchbar">
+						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
+					</div>
+
+				
 					<button onClick={this.printState}>test ajax call</button>
-				</div>
-
-
+					{resultList}
 			</div>
 		);
 	}

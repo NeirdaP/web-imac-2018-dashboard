@@ -5,12 +5,13 @@ body {
 
 /**Double Range Slider CSS*/
 .filter .rc-slider-track {
-  background-color: black; }
+  background-color: #2b2b2b; }
 
 .filter .rc-slider-handle {
-  border-color: red; }
+  border-color: #ed4d50; }
 
 .filter .rc-slider-rail {
+  color: blue;
   background-color: #eee; }
 
 .filter .values {
