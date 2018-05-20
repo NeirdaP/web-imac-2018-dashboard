@@ -5,14 +5,25 @@
 
 .Home {
 	height: 100vh; // So that App is full height
- 	font-family: Verdana;
- 	color: #2b2b2b;
+	font-family: Verdana;
+	color: #2b2b2b;
 	background-color: rgb(236,40,40);
 
-  h2 {
-    text-transform: uppercase;
-    font-size: 0.9em;
-  }
+	h2 {
+		text-transform: uppercase;
+		font-size: 0.9em;
+	}
+
+	.addMovieButton{
+		background: 0;
+		border:0;
+		
+		position: fixed;
+		top:20px;
+		right: 40px;
+		
+		cursor: pointer;
+	}
 }
 
 .component {

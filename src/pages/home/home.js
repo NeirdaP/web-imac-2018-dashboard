@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+// COMPONENTS TO IMPORT
 import Searchbar from './components/searchbar/searchbar.js';
 import Filterbyseat from './components/filterbyseat/filterbyseat.js';
 import Filterbyscreens from './components/filterbyscreens/filterbyscreens.js';
@@ -6,8 +8,15 @@ import Filterbyage from './components/filterbyage/filterbyage.js';
 import Filterbyfreq from './components/filterbyfreq/filterbyfreq.js';
 import Filterbyarthouse from './components/filterbyarthouse/filterbyarthouse.js';
 import ResultList from './components/resultpage/resultlist';
+
+// STYLE OF THE COMPONENT
 import './home.css';
+
+// AXIOS FOR THE API CALL
 import axios from "axios";
+
+// IMAGES
+import addMovie from '../../image/addMovie.png';
 
 class Home extends Component {
 
@@ -34,19 +43,13 @@ class Home extends Component {
 		this.setFreq = this.setFreq.bind(this);
 		this.setArtHouse = this.setArtHouse.bind(this);
 		this.search = this.search.bind(this);
-		this.printState = this.printState.bind(this);
-
 		this.showResult = this.showResult.bind(this);	
-		
+		this.addMovie = this.addMovie.bind(this);
 		this.componentDidMount = this.componentDidMount.bind(this);
 	}
 
 	//SETTERS
 	setParameter(name, value){
-		/*this.setState({
-			name: value
-		})*/
-
 		switch(name){
 			case 'age':
 				this.setState({
@@ -88,52 +91,48 @@ class Home extends Component {
 		console.log(this.state)
 	}
 
-	// Set the keyword value
+	// SETTERS
 	setSearchword(searchWord){
 		this.setParameter('searchWord', searchWord);
 	}
 
-	// Set the screens value
 	setScreens(value){
 		this.setParameter('screens', value);
 	}
 
-	// Set the seats value
 	setSeats(value){
 		this.setParameter('seats', value);
 	}
 
-	// Set the art house value
 	setArtHouse(value){
 		this.setParameter('artHouse', value);
 	}
 
-	// Set the age value
 	setAge(value){
 		this.setParameter('age', value);
 	}
 
-	// Set the freq value
 	setFreq(value){
 		this.setParameter('freq', value);
 	}
 
-	// Fonction de recherche que tous les composants de la page principale utiliseront
+	// SEARCH FUNCTION FOR ALL SEARCHING FILTER
 	search(searchWord, screens, seats, age) {
-		console.log("searching");
-		this.setState({showResultList: true});
-		// Vérifier qu'il y a qqch
-	}
-
-	printState(){
-		console.log(this.state.cinemas);
-	}
-
 		
+		
+		console.log("Searching thanks to the AXIOS call in our API");
+		this.setState({showResultList: true});
+	}
+		
+	// SHOW THE LIST OF RESULT 
 	showResult(){
 		this.setState({showResultList: false});
 	}
-
+	
+	// ADD A MOVIE TO THE APP
+	addMovie(){
+		console.log("Here should be the call for the creation of a movie");
+	}
 
 	// AJAX Call
 	componentDidMount(){
@@ -167,46 +166,42 @@ class Home extends Component {
 	render() {
 		const showResultList = this.state.showResultList;
 		
+		// TO SHOW THE LIST OR THE SEARCH FILTERS
 		const resultList = showResultList ? (
 			<ResultList showResult={this.showResult} cinemas={this.state.cinemas} />
 		) : (
 			<div className="searchDivs">
-					<div className="map">
+				<div className="component screenFilter">
+					<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
+				</div>
 
-					</div>
+				<div className="component seatFilter">
+					<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={this.setSeats} />
+				</div>
 
-					<div className="component screenFilter">
-						<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
-					</div>
+				<div className="component ageFilter">
+					<Filterbyage onAfterChange={this.search} setParentAgeSlider={this.setAge} />
+				</div>
 
-					<div className="component seatFilter">
-						<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={this.setSeats} />
-					</div>
+				<div className="component freqFilter">
+					<Filterbyfreq onAfterChange={this.search} setParentFreqSlider={this.setFreq} />
+				</div>
 
-					<div className="component ageFilter">
-						<Filterbyage onAfterChange={this.search} setParentAgeSlider={this.setAge} />
-					</div>
-
-					<div className="component freqFilter">
-						<Filterbyfreq onAfterChange={this.search} setParentFreqSlider={this.setFreq} />
-					</div>
-
-					<div className="component artHouseFilter">
-						<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
-					</div>
+				<div className="component artHouseFilter">
+					<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
+				</div>
 			</div>
 		);
 
-		
 		return (
 			<div className="Home">
 					<div className="component searchbar">
 						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
 					</div>
-
-				
-					<button onClick={this.printState}>test ajax call</button>
+									
 					{resultList}
+					
+					<button className="addMovieButton" onClick={this.addMovie}><img src={addMovie} alt="addMovie"></img></button>
 			</div>
 		);
 	}

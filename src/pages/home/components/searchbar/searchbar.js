@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+
+// STYLE OF THE COMPONENT
 import './searchbar.css';
+
+// IMAGES
 import searchIcon from '../../../../image/searchIcon.png';
 
 class Searchbar extends Component {
