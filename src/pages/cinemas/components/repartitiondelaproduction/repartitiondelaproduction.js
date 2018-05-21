@@ -19,7 +19,8 @@ class RepartitionDeLaProduction extends Component {
 		super(props);
 
 		this.state = {
-			siege: 140
+			realisateur: [30,70],
+			acteur: [40,60]
 		}
 	}
 
@@ -28,7 +29,12 @@ class RepartitionDeLaProduction extends Component {
 		return (
       <div className="repartitiondelaproduction">
         <h3>Répartition de la production</h3>
-				<p>{this.siege}</p>
+					<div className="caract">
+						<h4>Réalisateur.rice :</h4>
+						<p>H/F {this.state.realisateur}</p>
+						<h4>Acteur.rice :</h4>
+						<p>H/F {this.state.acteur}</p>
+					</div>
       </div>
 		);
 	}

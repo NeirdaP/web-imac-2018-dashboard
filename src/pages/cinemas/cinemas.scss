@@ -10,6 +10,8 @@ $grey : #4e4e4e;
   padding: 0;
   width: 700px;
   color: $red;
+  overflow: hidden;
+  height: 95%;
 
   .cinemaTitle {
     text-align: center;
@@ -26,7 +28,16 @@ $grey : #4e4e4e;
       }
 
       button {
+    			background: 0px;
+    			border: 0px;
+    			float: right;
+    			cursor: pointer;
 
+    			padding-top: 5px;
+
+    			image{
+    				width: 20px;
+    			}
       }
     }
 
@@ -45,6 +56,12 @@ $grey : #4e4e4e;
 
   .cineInfo {
     padding: 1em 2em;
+    overflow: auto;
+    height: 100%;
+  }
+
+  .caract {
+    display: block;
   }
 
   p{

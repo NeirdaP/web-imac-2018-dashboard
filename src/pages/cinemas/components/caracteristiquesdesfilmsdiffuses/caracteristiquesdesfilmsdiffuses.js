@@ -19,7 +19,9 @@ class CaracteristiquesDesFilmsDiffuses extends Component {
 		super(props);
 
 		this.state = {
-			siege: 140
+			nb: [48,52],
+			nationalite: "française",
+			genre: 3
 		}
 	}
 
@@ -28,7 +30,18 @@ class CaracteristiquesDesFilmsDiffuses extends Component {
 		return (
       <div className="caracteristiquesfilmsdiffuses">
         <h3>Caractéristiques des films diffusés</h3>
-				<p>{this.siege}</p>
+				<div className="caract">
+					<h4>Colorimetrie :</h4>
+					<p>N/B {this.state.nb}</p>
+				</div>
+				<div className="caract">
+					<h4>Nationalité :</h4>
+					<p>{this.state.nationalite}</p>
+				</div>
+				<div className="caract">
+					<h4>Genre :</h4>
+					<p>{this.state.genre}</p>
+				</div>
       </div>
 		);
 	}

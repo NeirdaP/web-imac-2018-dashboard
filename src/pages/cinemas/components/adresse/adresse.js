@@ -26,7 +26,7 @@ class Adresse extends Component {
 		return (
       <div className="adresse">
         <h3>Adresse</h3>
-				<p>{this.adresse}</p>
+				<p>{this.state.adresse}</p>
       </div>
 		);
 	}

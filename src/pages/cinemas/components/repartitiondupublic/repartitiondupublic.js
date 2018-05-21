@@ -19,7 +19,8 @@ class RepartitionDuPublic extends Component {
 		super(props);
 
 		this.state = {
-			siege: 140
+			sexe: [42,58],
+			age: [12,46,31,11]
 		}
 	}
 
@@ -28,7 +29,12 @@ class RepartitionDuPublic extends Component {
 		return (
       <div className="repartitiondupublic">
         <h3>Répartition du public</h3>
-				<p>{this.siege}</p>
+				<div className="caract">
+					<h4>Sexe :</h4>
+					<p>{this.state.sexe}</p>
+					<h4>Âge :</h4>
+					<p>{this.state.age}</p>
+				</div>
       </div>
 		);
 	}
