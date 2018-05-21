@@ -133,7 +133,7 @@ class Home extends Component {
 		
 		// CALL
 		axios
-			.get("http://back.cinema-parisiens.fr/cinemas?seats=" + seatsMin + "," + seatsMax + "&screens=" + screensMin + "," + screensMax + "&keyword=" + searchWord + "&artHouse=" + artHouse)
+			.get("https://back.cinema-parisiens.fr/cinemas?seats=" + seatsMin + "," + seatsMax + "&screens=" + screensMin + "," + screensMax + "&keyword=" + searchWord + "&artHouse=" + artHouse)
 			.then(response => {
 				const cinemasFound = response.data.map(c => {
 					return {	
@@ -183,7 +183,7 @@ class Home extends Component {
 	// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://back.cinema-parisiens.fr/cinemas")
+			.get("https://back.cinema-parisiens.fr/cinemas")
 			.then(response => {
 				const newCinemas = response.data.map(c => {
 				  return {
