@@ -35,7 +35,7 @@ class Home extends Component {
 			freq: {min: null, max: null},
 			age: {min: null, max: null},
 			showResultList: false,
-			showCinema: false
+			showCinemaValue: false
 		}
 
 		this.setParameters = this.setParameter.bind(this);
@@ -130,12 +130,12 @@ class Home extends Component {
 
 	// SHOW THE LIST OF RESULT
 	showResult(){
-		this.setState({showResultList: false, showCinema: false});
+		this.setState({showResultList: false, showCinemaValue: false});
 	}
 
 	// SHOW THE Cinema
 	showCinema(){
-		this.setState({showResultList: false, showCinema: true});
+		this.setState({showResultList: false, showCinemaValue: 2});
 	}
 
 	// ADD A MOVIE TO THE APP
@@ -172,7 +172,7 @@ class Home extends Component {
 	}
 
 	renderInterface(){
-		if(this.state.showCinema){
+		if(this.state.showCinemaValue !== false){
 			return (
 				<Cinemas showResult={this.showResult} cinemas={this.state.cinemas} />
 			);
@@ -212,7 +212,7 @@ class Home extends Component {
 	// RENDER THE COMPONENT
 	render() {
 		const showResultList = this.state.showResultList;
-		const showCinema = this.state.showCinema;
+		const showCinema = this.state.showCinemaValue;
 
 		// TO SHOW THE LIST OR THE SEARCH FILTERS OR THe CINEMA PAGE
 		const resultList = this.renderInterface();

@@ -16,7 +16,7 @@ import './cinemas.css';
 import cross from '../../image/cross.png';
 
 // AXIOS FOR THE API CALL
-import axios from "axios";
+//import axios from "axios";
 
 class Cinemas extends Component {
 
@@ -33,10 +33,11 @@ class Cinemas extends Component {
 
 	// RENDER THE COMPONENT
 	render() {
+		console.log(this.props)
 		return (
 			<div className="component Cinema">
 				<div className="cinemaTitle">
-					<h2>Nom du cinema</h2>
+					<h2>{this.props.cinemas[2].name}</h2>
 					<button onClick={this.changeShowList}><img src={cross} alt="closeButton"></img></button>
 				</div>
 

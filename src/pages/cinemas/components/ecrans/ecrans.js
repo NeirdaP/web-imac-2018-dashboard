@@ -12,16 +12,12 @@ import React, { Component } from 'react';
 );/**/
 
 // IMAGES
-import screen from '../../../../image/screen_icon.png';
+//import screen from '../../../../image/screen_icon.png';
 
 class Ecrans extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			ecran: 7
-		}
 	}
 
 	// RENDER THE COMPONENT
@@ -29,7 +25,7 @@ class Ecrans extends Component {
 		return (
       <div className="ecrans">
         <h3>Ecrans</h3>
-					<div className="icon ecranimg" style={{}}> </div>
+					<div className="icon ecranimg" > </div>
 
 				<p>7</p>
       </div>

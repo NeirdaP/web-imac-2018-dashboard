@@ -12,16 +12,12 @@ import React, { Component } from 'react';
 );/**/
 
 // IMAGES
-import siege from '../../../../image/seat_icon.png';
+//import siege from '../../../../image/seat_icon.png';
 
 class Sieges extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			siege: 140
-		}
 	}
 
 	// RENDER THE COMPONENT
@@ -29,8 +25,8 @@ class Sieges extends Component {
 		return (
       <div className="sieges">
         <h3>Sièges</h3>
-				<div className="icon siegeimg" style={ { "width": this.siege * 20 }} > </div>
-				<p>{this.siege}</p>
+				<div className="icon siegeimg"> </div>
+				<p>140</p>
       </div>
 		);
 	}

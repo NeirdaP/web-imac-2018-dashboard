@@ -19,6 +19,7 @@ class ResultList extends Component {
 	}
 
 	render() {
+		console.log(this.props)
 		return (
 			<div className="resultList">
 
@@ -29,8 +30,8 @@ class ResultList extends Component {
 
 				<div className="cinema">
 					<ul>
-						{this.props.cinemas.map((cinema) =>
-							<li key={cinema} onClick={this.changeShowCinema} >
+						{this.props.cinemas.map((cinema, i) =>
+							<li key={cinema} onClick={this.changeShowCinema} cinemaInfo={i} >
 								<span className="nameCinema">{cinema.name}</span>
 								<br></br>
 								<span className="adresseCinema">{cinema.latitude} {cinema.longitude}</span>

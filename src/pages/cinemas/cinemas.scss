@@ -38,6 +38,11 @@ $grey : #4e4e4e;
     padding: 0.1em .5em;
   }
 
+  h4 {
+    display: inline-block;
+    color:$red;
+  }
+
   .cineInfo {
     padding: 1em 2em;
   }
@@ -53,9 +58,6 @@ $grey : #4e4e4e;
 
     &.ecranimg {
       background-image: image("../../image/screen_icon.png");
-      background-size: contain;
-      width: 21px;
-      height: 21px;
     }
 
     &.siegeimg {
