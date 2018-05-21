@@ -36,7 +36,7 @@ class Cinemas extends Component {
 		return (
 			<div className="component Cinema">
 				<div className="cinemaTitle">
-					<h2>{this.props.cinemas[2].name}</h2>
+					<h2>{this.props.cinemas[1].name}</h2>
 					<button onClick={this.changeShowList}><img src={cross} alt="closeButton"></img></button>
 				</div>
 

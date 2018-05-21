@@ -173,7 +173,6 @@ class Home extends Component {
 	// SHOW THE Cinema
 	showCinema(){
 		this.setState({showResultList: false, showCinemaValue: true});
-
 	}
 
 	// ADD A MOVIE TO THE APP
@@ -270,13 +269,11 @@ class Home extends Component {
 					<img src={addMovie} alt="addMovie" />
 				</button>
 
-					<div className="component searchbar">
-						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
-					</div>
+				<div className="component searchbar">
+					<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
+				</div>
 
-					{resultList}
-
-					<button className="addMovieButton" onClick={this.addMovie}><img src={addMovie} alt="addMovie"></img></button>
+				{resultList}
 			</div>
 		);
 	}
