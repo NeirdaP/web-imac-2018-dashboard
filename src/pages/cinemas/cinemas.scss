@@ -1,0 +1,74 @@
+$red : #ef4c4c;
+$greyred: #875656;
+$black : #1e1e1e;
+$grey : #4e4e4e;
+
+.component.Cinema {
+  top: 20px;
+  z-index: 10;
+  background-color: $black;
+  padding: 0;
+  width: 700px;
+  color: $red;
+  overflow: hidden;
+  height: 95%;
+
+  .cinemaTitle {
+    text-align: center;
+    background-color: $red;
+    padding: 0.5em 1em;
+
+      h2 {
+        display: inline-block;
+        color: $red;
+        font-size: 2em;
+        text-transform: uppercase;
+        background-color:$grey;
+        padding: .1em .5em;
+      }
+
+      button {
+    			background: 0px;
+    			border: 0px;
+    			float: right;
+    			cursor: pointer;
+
+    			padding-top: 5px;
+
+    			image{
+    				width: 20px;
+    			}
+      }
+    }
+
+  h3 {
+    display: inline-block;
+    color: $black;
+    text-transform: uppercase;
+    background-color:$red;
+    padding: 0.1em .5em;
+  }
+
+  h4 {
+    display: inline-block;
+    color:$red;
+  }
+
+  .cineInfo {
+    padding: 1em 2em;
+    overflow: auto;
+    height: 100%;
+  }
+
+  .caract {
+    display: block;
+  }
+
+  p{
+    color:$greyred;
+  }
+  .icon {
+    width: 21px;
+    height: 40px;
+  }
+}
