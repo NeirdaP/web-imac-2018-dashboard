@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; }
+
+body > #root > div {
+  height: 100vh; }
+
+main {
+  font-family: Verdana;
+  color: #010101; }
+  main h2 {
+    text-transform: uppercase;
+    font-size: 0.9em; }
+
+.component {
+  background-color: white;
+  width: 400px;
+  position: fixed;
+  left: 40px;
+  padding: 15px 40px;
+  border-radius: 5px; }
+  .component.searchbar {
+    top: 20px; }
+  .component.seatFilter {
+    top: 80px; }
+  .component.screenFilter {
+    top: 195px; }
+  .component.ageFilter {
+    top: 310px; }
+  .component.freqFilter {
+    top: 425px; }
+  .component.artHouseFilter {
+    top: 540px; }

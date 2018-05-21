@@ -1,0 +1,48 @@
+.component.Cinema {
+  top: 20px;
+  z-index: 10;
+  background-color: #1e1e1e;
+  padding: 0;
+  width: 700px;
+  color: #ef4c4c;
+  overflow: hidden;
+  height: 95%; }
+  .component.Cinema .cinemaTitle {
+    text-align: center;
+    background-color: #ef4c4c;
+    padding: 0.5em 1em; }
+    .component.Cinema .cinemaTitle h2 {
+      display: inline-block;
+      color: #ef4c4c;
+      font-size: 2em;
+      text-transform: uppercase;
+      background-color: #4e4e4e;
+      padding: .1em .5em; }
+    .component.Cinema .cinemaTitle button {
+      background: 0px;
+      border: 0px;
+      float: right;
+      cursor: pointer;
+      padding-top: 5px; }
+      .component.Cinema .cinemaTitle button image {
+        width: 20px; }
+  .component.Cinema h3 {
+    display: inline-block;
+    color: #1e1e1e;
+    text-transform: uppercase;
+    background-color: #ef4c4c;
+    padding: 0.1em .5em; }
+  .component.Cinema h4 {
+    display: inline-block;
+    color: #ef4c4c; }
+  .component.Cinema .cineInfo {
+    padding: 1em 2em;
+    overflow: auto;
+    height: 100%; }
+  .component.Cinema .caract {
+    display: block; }
+  .component.Cinema p {
+    color: #875656; }
+  .component.Cinema .icon {
+    width: 21px;
+    height: 40px; }
