@@ -32,7 +32,7 @@ class Filterbyscreens extends Component {
 		// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://localhost/web-imac-2018-dashboard/back/public/screens")
+			.get("http://back.cinema-parisiens.fr/screens")
 			.then(response => {
 				let data = response.data;
 			

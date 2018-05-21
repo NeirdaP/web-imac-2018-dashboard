@@ -7,7 +7,9 @@ import Filterbyscreens from './components/filterbyscreens/filterbyscreens.js';
 import Filterbyage from './components/filterbyage/filterbyage.js';
 import Filterbyfreq from './components/filterbyfreq/filterbyfreq.js';
 import Filterbyarthouse from './components/filterbyarthouse/filterbyarthouse.js';
+import Cinemas from '../cinemas/cinemas.js';
 import ResultList from './components/resultpage/resultlist';
+
 import { GoogleApiWrapper } from 'google-maps-react'
 import MapContainer from '../../MapContainer/MapContainer';
 
@@ -35,7 +37,8 @@ class Home extends Component {
 			seats: {min: null, max: null},
 			freq: {min: null, max: null},
 			age: {min: null, max: null},
-			showResultList: false
+			showResultList: false,
+			showCinemaValue: false
 		}
 
 		this.setParameters = this.setParameter.bind(this);
@@ -47,6 +50,7 @@ class Home extends Component {
 		this.setArtHouse = this.setArtHouse.bind(this);
 		this.search = this.search.bind(this);
 		this.showResult = this.showResult.bind(this);
+		this.showCinema = this.showCinema.bind(this);
 		this.addMovie = this.addMovie.bind(this);
 		this.componentDidMount = this.componentDidMount.bind(this);
 	}
@@ -129,7 +133,7 @@ class Home extends Component {
 		
 		// CALL
 		axios
-			.get("http://localhost/web-imac-2018-dashboard/back/public/cinemas?seats=" + seatsMin + "," + seatsMax + "&screens=" + screensMin + "," + screensMax + "&keyword=" + searchWord + "&artHouse=" + artHouse)
+			.get("http://back.cinema-parisiens.fr/cinemas?seats=" + seatsMin + "," + seatsMax + "&screens=" + screensMin + "," + screensMax + "&keyword=" + searchWord + "&artHouse=" + artHouse)
 			.then(response => {
 				const cinemasFound = response.data.map(c => {
 					return {	
@@ -146,21 +150,30 @@ class Home extends Component {
 					cinemasFound: cinemasFound
 				});
 			
+				// SET THE CINEMAS FOUND IN THE NEW STATE
 				this.setState(newState);
-				
+			
+				// SET THE CINEMAS AND MARKERS FOR THIS SEARCH ON THE MAP
 				this.refs.mapContainer.setCinemas(cinemasFound);				
 				this.refs.mapContainer.addMarkers();
 			})
 			.catch(error => console.log(error))
 		
+		// SHOW ME THE RESULT
 		this.setState({showResultList: true});
 	}
 
 	// HIDE THE LIST OF RESULT
 	// REMOVE THE MARKERS
 	showResult(){
-		this.setState({showResultList: false});
+		this.setState({showResultList: false, showCinemaValue: false});
 		this.refs.mapContainer.removeMarkers();
+	}
+	
+	// SHOW THE Cinema
+	showCinema(){
+		this.setState({showResultList: false, showCinemaValue: true});
+
 	}
 
 	// ADD A MOVIE TO THE APP
@@ -171,7 +184,7 @@ class Home extends Component {
 	// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://back.cinema-parisiens.fr//cinemas")
+			.get("http://back.cinema-parisiens.fr/cinemas")
 			.then(response => {
 				const newCinemas = response.data.map(c => {
 				  return {
@@ -197,40 +210,54 @@ class Home extends Component {
 			})
 			.catch(error => console.log(error));
 	}
+	
+	// RENDER THE INTERFACE
+	renderInterface(){
+		if(this.state.showCinemaValue !== false){
+			return (
+				<Cinemas showResult={this.showResult} cinemas={this.state.cinemas} />
+			);
+		}
+		else if (this.state.showResultList){
+			return (
+				<ResultList showResult={this.showResult} showCinema={this.showCinema} cinemas={this.state.cinemasFound} />
+			);
+		}
+		else {
+			return (
+				<div className="searchDivs">
+					<div className="component screenFilter" >
+						<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
+					</div>
+
+					<div className="component seatFilter">
+						<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={this.setSeats} />
+					</div>
+
+					<div className="component ageFilter">
+						<Filterbyage onAfterChange={this.search} setParentAgeSlider={this.setAge} />
+					</div>
+
+					<div className="component freqFilter">
+						<Filterbyfreq onAfterChange={this.search} setParentFreqSlider={this.setFreq} />
+					</div>
+
+					<div className="component artHouseFilter">
+						<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
+					</div>
+				</div>
+			);
+		}
+	}
 
 	// RENDER THE COMPONENT
 	render() {
-		const showResultList = this.state.showResultList;
-
-		// TO SHOW THE LIST OR THE SEARCH FILTERS
-		const resultList = showResultList ? (
-			<ResultList showResult={this.showResult} cinemas={this.state.cinemasFound} />
-		) : (
-			<div className="searchDivs">
-				<div className="component screenFilter">
-					<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
-				</div>
-
-				<div className="component seatFilter">
-					<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={this.setSeats} />
-				</div>
-
-				<div className="component ageFilter">
-					<Filterbyage onAfterChange={this.search} setParentAgeSlider={this.setAge} />
-				</div>
-
-				<div className="component freqFilter">
-					<Filterbyfreq onAfterChange={this.search} setParentFreqSlider={this.setFreq} />
-				</div>
-
-				<div className="component artHouseFilter">
-					<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
-				</div>
-			</div>
-		);
+		// TO SHOW THE LIST OR THE SEARCH FILTERS OR THe CINEMA PAGE
+		const resultList = this.renderInterface();
 
 		return (
 			<div className="Home">
+
 				<MapContainer google={this.props.google} ref="mapContainer" />
 			
 				<div className="component searchbar">
@@ -242,6 +269,14 @@ class Home extends Component {
 				<button className="addMovieButton" onClick={this.addMovie}>
 					<img src={addMovie} alt="addMovie" />
 				</button>
+
+					<div className="component searchbar">
+						<Searchbar search={this.search} setParentSearchword={this.setSearchword} />
+					</div>
+
+					{resultList}
+
+					<button className="addMovieButton" onClick={this.addMovie}><img src={addMovie} alt="addMovie"></img></button>
 			</div>
 		);
 	}
