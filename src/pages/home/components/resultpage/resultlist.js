@@ -31,7 +31,7 @@ class ResultList extends Component {
 				<div className="cinema">
 					<ul>
 						{this.props.cinemas.map((cinema, i) =>
-							<li key={cinema} onClick={this.changeShowCinema} cinemaInfo={i} >
+							<li key={cinema} onClick={this.changeShowCinema} cinemainfo={i} >
 								<span className="nameCinema">{cinema.name}</span>
 								<br></br>
 								<span className="adresseCinema">{cinema.latitude} {cinema.longitude}</span>

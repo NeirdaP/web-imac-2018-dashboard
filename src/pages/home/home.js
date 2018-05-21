@@ -185,7 +185,7 @@ class Home extends Component {
 		else {
 			return (
 				<div className="searchDivs">
-					<div className="component screenFilter">
+					<div className="component screenFilter" >
 						<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
 					</div>
 
