@@ -11,25 +11,27 @@ import React, { Component } from 'react';
   container
 );/**/
 
-class Adresse extends Component {
+// IMAGES
+
+class CaracteristiquesDesFilmsDiffuses extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			adresse : "8 Adresse de test, 75020 Paris"
+			siege: 140
 		}
 	}
 
 	// RENDER THE COMPONENT
 	render() {
 		return (
-      <div className="adresse">
-        <h3>Adresse</h3>
-				<p>{this.adresse}</p>
+      <div className="caracteristiquesfilmsdiffuses">
+        <h3>Caractéristiques des films diffusés</h3>
+				<p>{this.siege}</p>
       </div>
 		);
 	}
 }
 
-export default Adresse;
+export default CaracteristiquesDesFilmsDiffuses;

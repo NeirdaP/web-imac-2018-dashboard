@@ -1,25 +1,65 @@
 $red : #ef4c4c;
 $greyred: #875656;
+$black : #1e1e1e;
+$grey : #4e4e4e;
 
-.Cinema {
+.component.Cinema {
   top: 20px;
   z-index: 10;
+  background-color: $black;
+  padding: 0;
+  width: 700px;
+  color: $red;
 
-  h2 {
-    color: $red;
+  .cinemaTitle {
+    text-align: center;
+    background-color: $red;
+    padding: 0.5em 1em;
+
+      h2 {
+        display: inline-block;
+        color: $red;
+        font-size: 2em;
+        text-transform: uppercase;
+        background-color:$grey;
+        padding: .1em .5em;
+      }
+
+      button {
+
+      }
+    }
+
+  h3 {
+    display: inline-block;
+    color: $black;
     text-transform: uppercase;
+    background-color:$red;
+    padding: 0.1em .5em;
   }
+
+  .cineInfo {
+    padding: 1em 2em;
+  }
+
   p{
     color:$greyred;
   }
+  .icon {
+    background-size: contain;
+    background-color: white;
+    width: 21px;
+    height: 21px;
 
-  .ecranimg {
-    background-image: image("../../image/screen.png");
-    background-repeat: repeat-x;
-  }
+    &.ecranimg {
+      background-image: image("../../image/screen_icon.png");
+      background-size: contain;
+      width: 21px;
+      height: 21px;
+    }
 
-  .siegeimg {
-    background-image: image("../../image/siege.png");
-    background-repeat: repeat-x;
+    &.siegeimg {
+      background-image: image("../../image/seat_icon.png");
+    }
   }
 }

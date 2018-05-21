@@ -12,9 +12,8 @@ import React, { Component } from 'react';
 );/**/
 
 // IMAGES
-import siege from '../../image/siege.png';
 
-class Sieges extends Component {
+class RepartitionDeLaProduction extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
@@ -27,13 +26,12 @@ class Sieges extends Component {
 	// RENDER THE COMPONENT
 	render() {
 		return (
-      <div className="sieges">
-        <h2>Sièges</h2>
-				<div className="siegeimg" style={width:this.siege * 20} > </div>
+      <div className="repartitiondelaproduction">
+        <h3>Répartition de la production</h3>
 				<p>{this.siege}</p>
       </div>
 		);
 	}
 }
 
-export default Sieges;
+export default RepartitionDeLaProduction;

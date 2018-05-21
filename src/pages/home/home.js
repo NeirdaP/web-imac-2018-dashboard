@@ -7,6 +7,7 @@ import Filterbyscreens from './components/filterbyscreens/filterbyscreens.js';
 import Filterbyage from './components/filterbyage/filterbyage.js';
 import Filterbyfreq from './components/filterbyfreq/filterbyfreq.js';
 import Filterbyarthouse from './components/filterbyarthouse/filterbyarthouse.js';
+import Cinemas from '../cinemas/cinemas.js';
 import ResultList from './components/resultpage/resultlist';
 //import Cinemas from '../cinemas/cinemas.js';
 
@@ -33,7 +34,8 @@ class Home extends Component {
 			seats: {min: null, max: null},
 			freq: {min: null, max: null},
 			age: {min: null, max: null},
-			showResultList: false
+			showResultList: false,
+			showCinema: false
 		}
 
 		this.setParameters = this.setParameter.bind(this);
@@ -45,6 +47,7 @@ class Home extends Component {
 		this.setArtHouse = this.setArtHouse.bind(this);
 		this.search = this.search.bind(this);
 		this.showResult = this.showResult.bind(this);
+		this.showCinema = this.showCinema.bind(this);
 		this.addMovie = this.addMovie.bind(this);
 		this.componentDidMount = this.componentDidMount.bind(this);
 	}
@@ -127,7 +130,12 @@ class Home extends Component {
 
 	// SHOW THE LIST OF RESULT
 	showResult(){
-		this.setState({showResultList: false});
+		this.setState({showResultList: false, showCinema: false});
+	}
+
+	// SHOW THE Cinema
+	showCinema(){
+		this.setState({showResultList: false, showCinema: true});
 	}
 
 	// ADD A MOVIE TO THE APP
@@ -163,36 +171,52 @@ class Home extends Component {
 			.catch(error => console.log(error));
 	}
 
+	renderInterface(){
+		if(this.state.showCinema){
+			return (
+				<Cinemas showResult={this.showResult} cinemas={this.state.cinemas} />
+			);
+		}
+		else if (this.state.showResultList){
+			return (
+				<ResultList showResult={this.showResult} showCinema={this.showCinema} cinemas={this.state.cinemas} />
+			);
+		}
+		else {
+			return (
+				<div className="searchDivs">
+					<div className="component screenFilter">
+						<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
+					</div>
+
+					<div className="component seatFilter">
+						<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={this.setSeats} />
+					</div>
+
+					<div className="component ageFilter">
+						<Filterbyage onAfterChange={this.search} setParentAgeSlider={this.setAge} />
+					</div>
+
+					<div className="component freqFilter">
+						<Filterbyfreq onAfterChange={this.search} setParentFreqSlider={this.setFreq} />
+					</div>
+
+					<div className="component artHouseFilter">
+						<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
+					</div>
+				</div>
+			);
+		}
+	}
+
 	// RENDER THE COMPONENT
 	render() {
 		const showResultList = this.state.showResultList;
+		const showCinema = this.state.showCinema;
 
-		// TO SHOW THE LIST OR THE SEARCH FILTERS
-		const resultList = showResultList ? (
-			<ResultList showResult={this.showResult} cinemas={this.state.cinemas} />
-		) : (
-			<div className="searchDivs">
-				<div className="component screenFilter">
-					<Filterbyscreens onAfterChange={this.search} setParentScreensSlider={this.setScreens} />
-				</div>
+		// TO SHOW THE LIST OR THE SEARCH FILTERS OR THe CINEMA PAGE
+		const resultList = this.renderInterface();
 
-				<div className="component seatFilter">
-					<Filterbyseat onAfterChange={this.search} setParentSeatsSlider={this.setSeats} />
-				</div>
-
-				<div className="component ageFilter">
-					<Filterbyage onAfterChange={this.search} setParentAgeSlider={this.setAge} />
-				</div>
-
-				<div className="component freqFilter">
-					<Filterbyfreq onAfterChange={this.search} setParentFreqSlider={this.setFreq} />
-				</div>
-
-				<div className="component artHouseFilter">
-					<Filterbyarthouse onAfterChange={this.search} setParentArtHouse={this.setArtHouse} />
-				</div>
-			</div>
-		);
 
 		return (
 			<div className="Home">

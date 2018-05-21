@@ -12,28 +12,26 @@ import React, { Component } from 'react';
 );/**/
 
 // IMAGES
-import screen from '../../image/screen.png';
 
-class Ecrans extends Component {
+class RepartitionDuPublic extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			ecran: 7
+			siege: 140
 		}
 	}
 
 	// RENDER THE COMPONENT
 	render() {
 		return (
-      <div className="ecrans">
-        <h2>Ecrans</h2>
-				<div className="ecranimg" style={width:this.ecran * 20} > </div>
-				<p>{this.ecran}</p>
+      <div className="repartitiondupublic">
+        <h3>Répartition du public</h3>
+				<p>{this.siege}</p>
       </div>
 		);
 	}
 }
 
-export default Ecrans;
+export default RepartitionDuPublic;

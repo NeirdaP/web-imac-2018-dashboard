@@ -11,25 +11,29 @@ import React, { Component } from 'react';
   container
 );/**/
 
-class Adresse extends Component {
+// IMAGES
+import siege from '../../../../image/seat_icon.png';
+
+class Sieges extends Component {
 	// CONSTRUTOR
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			adresse : "8 Adresse de test, 75020 Paris"
+			siege: 140
 		}
 	}
 
 	// RENDER THE COMPONENT
 	render() {
 		return (
-      <div className="adresse">
-        <h3>Adresse</h3>
-				<p>{this.adresse}</p>
+      <div className="sieges">
+        <h3>Sièges</h3>
+				<div className="icon siegeimg" style={ { "width": this.siege * 20 }} > </div>
+				<p>{this.siege}</p>
       </div>
 		);
 	}
 }
 
-export default Adresse;
+export default Sieges;
