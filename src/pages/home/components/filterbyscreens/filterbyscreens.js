@@ -32,7 +32,7 @@ class Filterbyscreens extends Component {
 		// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://back.cinema-parisiens.fr/screens")
+			.get("https://back.cinema-parisiens.fr/screens")
 			.then(response => {
 				let data = response.data;
 			

@@ -35,7 +35,7 @@ class Filterbyseat extends Component {
 	// AJAX Call
 	componentDidMount(){
 		axios
-			.get("http://back.cinema-parisiens.fr/seats")
+			.get("https://back.cinema-parisiens.fr/seats")
 			.then(response => {
 				let data = response.data;
 			
